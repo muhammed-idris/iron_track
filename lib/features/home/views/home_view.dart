@@ -126,7 +126,7 @@ class HomeViewState extends State<HomeView> {
               padding: EdgeInsets.only(
                 left: width * 0.04,
                 right: width * 0.04,
-                top: height * 0.015,
+                top: height * 0.005,
               ),
               sliver: SliverList(
                 delegate: SliverChildListDelegate([

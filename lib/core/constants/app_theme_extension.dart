@@ -101,7 +101,7 @@ class GlassTheme extends ThemeExtension<GlassTheme> {
     upcomingText: 'assets/images/person.png',
     weekSelector: 'assets/images/week_background.png',
     borderColors: [
-      GridColor.grey800,
+      GridColor.grey830,
       GridColor.grey875,
       GridColor.grey875,
       GridColor.grey875,
@@ -111,10 +111,10 @@ class GlassTheme extends ThemeExtension<GlassTheme> {
     rootBackColor: GlassColors.glassDark4,
     selectedColor: AppColor.grey400,
     unSelectedColor: AppColor.grey600,
-    backGround: GridColor.grey950,
+    backGround: Color(0xFF000000),
     exerciseBackground: [
-      Color(0xFF212121),
-      Color(0xFF121212),
+      GridColor.grey890,
+      Color(0xFF0D0D0E),
     ],
     selectedDay: [
       GridColor.red600,
