@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:iron_track/core/theme/theme_context.dart';
 import 'package:gap/gap.dart';
-import 'package:iron_track/core/constants/text_styles.dart';
 import 'package:iron_track/shared/containers/crystal_container.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
@@ -56,7 +55,7 @@ class _CaloriesRingState extends State<CaloriesRing> {
                   Gap(width * 0.01),
                   Text(
                     "Calories",
-                    style: TextStyles.buttonSmall.copyWith(
+                    style: context.text.buttonSmall.copyWith(
                       color: glass.textPrimary,
                     ),
                   ),
@@ -65,7 +64,7 @@ class _CaloriesRingState extends State<CaloriesRing> {
               Gap(height * 0.0),
               Text(
                 "1,840",
-                style: TextStyles.appBarTitle.copyWith(
+                style: context.text.appBarTitle.copyWith(
                   color: glass.textPrimary,
                   fontSize: 40,
                 ),
@@ -73,7 +72,7 @@ class _CaloriesRingState extends State<CaloriesRing> {
 
               Text(
                 "of 2,400 kcal",
-                style: TextStyles.body.copyWith(
+                style: context.text.body.copyWith(
                   color: glass.hintText,
                   fontSize: 15,
                 ),
@@ -91,7 +90,7 @@ class _CaloriesRingState extends State<CaloriesRing> {
                     gradient: LinearGradient(colors: glass.softBadgeGradient),
                     child: Text(
                       "560 Remaining",
-                      style: TextStyles.body.copyWith(color: glass.textPrimary),
+                      style: context.text.body.copyWith(color: glass.textPrimary),
                     ),
                   ),
                 ],
@@ -111,12 +110,12 @@ class _CaloriesRingState extends State<CaloriesRing> {
                 Gap(height * 0.045),
                 Text(
                   "77 %",
-                  style: TextStyles.appBar.copyWith(color: glass.textPrimary),
+                  style: context.text.appBar.copyWith(color: glass.textPrimary),
                 ),
                 Gap(height * 0.005),
                 Text(
                   "Of Your Daily Goal",
-                  style: TextStyles.buttonSmall.copyWith(
+                  style: context.text.buttonSmall.copyWith(
                       color: glass.hintText,
                     fontSize: 9
                   ),

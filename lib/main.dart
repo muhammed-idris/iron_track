@@ -55,6 +55,9 @@ class _MyAppState extends State<MyApp> {
           final isDark = _themeController.isDark;
 
           return MaterialApp(
+            scrollBehavior: const MaterialScrollBehavior().copyWith(
+              scrollbars: false,
+            ),
             title: 'Iron Track',
             debugShowCheckedModeBanner: false,
             theme: AppTheme.lightTheme,

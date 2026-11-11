@@ -37,7 +37,7 @@ class ThemeController extends ChangeNotifier {
         savedIndex < ThemeMode.values.length) {
       return ThemeMode.values[savedIndex];
     }
-    return ThemeMode.dark;
+    return ThemeMode.light;
   }
 }
 

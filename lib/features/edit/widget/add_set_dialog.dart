@@ -3,7 +3,6 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:gap/gap.dart';
 import 'package:iron_track/core/theme/theme_context.dart';
 import '../../../core/constants/colors_manager.dart';
-import '../../../core/constants/text_styles.dart';
 import '../../../shared/containers/gradient_container.dart';
 import '../../../shared/customs/custom_btn.dart';
 
@@ -39,7 +38,7 @@ Future<bool?> showAddSetConfirmationDialog(BuildContext context) {
                     const Gap(10),
                     Text(
                       'Add Set',
-                      style: TextStyles.headline1.copyWith(
+                      style: context.text.headline1.copyWith(
                         color: glass.textPrimary,
                       ),
                     ),
@@ -48,7 +47,7 @@ Future<bool?> showAddSetConfirmationDialog(BuildContext context) {
                 const Gap(14),
                 Text(
                   'Add a new set to this exercise?',
-                  style: TextStyles.body.copyWith(color: glass.hintText),
+                  style: context.text.body.copyWith(color: glass.hintText),
                 ),
                 const Gap(28),
                 Row(

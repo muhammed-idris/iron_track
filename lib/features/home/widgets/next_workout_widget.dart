@@ -119,7 +119,6 @@ class _NextWorkoutWidgetState extends State<NextWorkoutWidget> with RouteAware {
             },
           ),
         ),
-        const Gap(2),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: List.generate(

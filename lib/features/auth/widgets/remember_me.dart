@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gap/gap.dart';
 import 'package:iron_track/core/theme/theme_context.dart';
-import '../../../core/constants/text_styles.dart';
 import '../../../shared/customs/custom_snack_bar.dart';
 
 class PressableText extends StatefulWidget {
@@ -67,7 +66,7 @@ class OrDivider extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 12),
           child: Text(
             label.toUpperCase(),
-            style: TextStyles.subtitle.copyWith(color: glass.hintText),
+            style: context.text.subtitle.copyWith(color: glass.hintText),
           ),
         ),
         Expanded(
@@ -107,7 +106,7 @@ class ContinueWithButton extends StatelessWidget {
             ),
             label: Text(
               'Apple',
-              style: TextStyles.buttonSmall.copyWith(
+              style: context.text.buttonSmall.copyWith(
                 color: glass.dividerColor,
                 fontWeight: FontWeight.w600,
               ),
@@ -134,7 +133,7 @@ class ContinueWithButton extends StatelessWidget {
             ),
             label: Text(
               'Google',
-              style: TextStyles.buttonSmall.copyWith(
+              style: context.text.buttonSmall.copyWith(
                 color: glass.dividerColor,
                 fontWeight: FontWeight.w600,
               ),

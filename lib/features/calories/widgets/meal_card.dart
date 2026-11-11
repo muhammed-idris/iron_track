@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:iron_track/core/theme/theme_context.dart';
 import 'package:gap/gap.dart';
-import '../../../core/constants/text_styles.dart';
 import '../../../shared/containers/crystal_container.dart';
 
 class MealCard extends StatefulWidget {
@@ -81,12 +80,12 @@ class _MealCardState extends State<MealCard> {
               Text(
                 "${widget.amount}g",
 
-                style: TextStyles.headline1.copyWith(color: glass.textPrimary),
+                style: context.text.headline1.copyWith(color: glass.textPrimary),
               ),
               Gap(height * 0.005),
               Text(
                 widget.type,
-                style: TextStyles.buttonSmall.copyWith(color: glass.hintText),
+                style: context.text.buttonSmall.copyWith(color: glass.hintText),
               ),
             ],
           ),

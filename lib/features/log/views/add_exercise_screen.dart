@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:iron_track/core/constants/text_styles.dart';
 import 'package:iron_track/core/theme/theme_context.dart';
-import 'package:iron_track/features/edit/widget/workout_app_bar.dart';
-import 'package:iron_track/shared/containers/crystal_container.dart';
 import '../widgets/add_exe_app_bar.dart';
 import '../widgets/add_exercise_widget.dart';
 

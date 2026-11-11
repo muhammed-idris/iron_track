@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../../../core/constants/colors_manager.dart';
-import '../../../core/constants/text_styles.dart';
 import '../../../core/theme/theme_context.dart';
 
 class DarkThemeRow extends StatefulWidget {
@@ -48,7 +47,7 @@ class _DarkThemeRowState extends State<DarkThemeRow> {
           const SizedBox(width: 14),
           Text(
             "Dark Mode",
-            style: TextStyles.headline1.copyWith(
+            style: context.text.headline1.copyWith(
               color: glass.textPrimary,
             ),
           ),

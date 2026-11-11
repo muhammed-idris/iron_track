@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:gap/gap.dart';
-import 'package:iron_track/core/constants/text_styles.dart';
 import 'package:iron_track/core/theme/theme_context.dart';
 import '../../../shared/customs/custom_animate.dart';
 import '../../../shared/customs/custom_txt.dart';
@@ -51,7 +50,7 @@ class NutrientCard extends StatelessWidget {
                 Gap(height * 0.003),
                 Text(
                   subtitle,
-                  style: TextStyles.buttonSmall.copyWith(
+                  style: context.text.buttonSmall.copyWith(
                     color: glass.hintText,
                   ),
                 ),
@@ -85,7 +84,7 @@ class NutrientCard extends StatelessWidget {
         Gap(height * 0.015),
         Text(
           '${leftGrams}g Left To Goal',
-          style: TextStyles.bodySmall.copyWith(color: glass.hintText),
+          style: context.text.bodySmall.copyWith(color: glass.hintText),
         ),
       ],
     ).slideUp(

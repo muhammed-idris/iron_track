@@ -84,7 +84,7 @@ class HomeViewState extends State<HomeView> {
         final exerciseWeight = exercise.weight ?? 0.0;
 
         totalWeekSets += exerciseSets;
-        totalVolume += (exerciseSets * exerciseReps) * exerciseWeight;
+        totalVolume += (exerciseSets + exerciseReps) * exerciseWeight;
       }
     }
 
@@ -126,7 +126,6 @@ class HomeViewState extends State<HomeView> {
               padding: EdgeInsets.only(
                 left: width * 0.04,
                 right: width * 0.04,
-                top: height * 0.005,
               ),
               sliver: SliverList(
                 delegate: SliverChildListDelegate([
@@ -181,7 +180,6 @@ class HomeViewState extends State<HomeView> {
                     begin: 0.1,
                     end: 0.0,
                   ),
-                  Gap(height * 0.01),
                 ]),
               ),
             ),

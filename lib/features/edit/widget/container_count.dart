@@ -4,7 +4,6 @@ import 'package:gap/gap.dart';
 import 'package:iron_track/core/theme/theme_context.dart';
 import 'package:iron_track/shared/containers/gradient_container.dart';
 import '../../../core/constants/colors_manager.dart';
-import '../../../core/constants/text_styles.dart';
 import '../../../shared/containers/crystal_container.dart';
 
 class CounterCard extends StatelessWidget {
@@ -60,7 +59,7 @@ class CounterCard extends StatelessWidget {
                 child: Center(
                   child: Text(
                     value ?? '',
-                    style: TextStyles.appBar.copyWith(color: glass.textPrimary),
+                    style: context.text.appBar.copyWith(color: glass.textPrimary),
                   ),
                 ),
               ),

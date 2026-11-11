@@ -5,8 +5,6 @@ import 'package:iron_track/core/theme/theme_context.dart';
 import 'package:iron_track/shared/containers/gradient_container.dart';
 import 'package:iron_track/shared/customs/custom_btn.dart';
 import '../../../core/constants/colors_manager.dart';
-import '../../../core/constants/text_styles.dart';
-
 Future<bool?> showDeleteConfirmationDialog(
   BuildContext context, {
   required String itemName,
@@ -49,7 +47,7 @@ Future<bool?> showDeleteConfirmationDialog(
               Gap(height * 0.035),
               Text(
                 title,
-                style: TextStyles.headline2.copyWith(
+                style: context.text.headline2.copyWith(
                   color: glass.textPrimary,
                 ),
               ),
@@ -57,7 +55,7 @@ Future<bool?> showDeleteConfirmationDialog(
               Text(
                 "$itemName will be permanently removed. This can't be undone.",
                 textAlign: TextAlign.center,
-                style: TextStyles.subtitle.copyWith(
+                style: context.text.subtitle.copyWith(
                   color: glass.textMuted,
                   height: 1.4,
                 ),

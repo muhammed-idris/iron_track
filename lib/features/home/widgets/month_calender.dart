@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
 import '../../../core/constants/colors_manager.dart';
-import '../../../core/constants/text_styles.dart';
 import '../../../core/theme/theme_context.dart';
 
 
@@ -103,11 +102,11 @@ class MonthCalendar extends StatelessWidget {
             children: [
               Text(
                 _monthNames[month - 1],
-                style: TextStyles.body.copyWith(color: glass.textPrimary),
+                style: context.text.body.copyWith(color: glass.textPrimary),
               ),
               Text(
                 trainedDays.length.toString(),
-                style: TextStyles.body.copyWith(color: glass.textMuted),
+                style: context.text.body.copyWith(color: glass.textMuted),
               ),
             ],
           ),

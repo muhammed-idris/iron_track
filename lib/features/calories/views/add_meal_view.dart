@@ -5,7 +5,6 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gap/gap.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:iron_track/core/constants/colors_manager.dart';
-import 'package:iron_track/core/constants/text_styles.dart';
 import 'package:iron_track/core/theme/theme_context.dart';
 import 'package:iron_track/features/calories/widgets/calories_info_card.dart';
 import 'package:iron_track/features/calories/widgets/meal_card.dart';
@@ -77,7 +76,7 @@ class _AddMealViewState extends State<AddMealView> {
                   children: [
                     Text(
                       'Rice With Chicken',
-                      style: TextStyles.buttonSmall.copyWith(
+                      style: context.text.buttonSmall.copyWith(
                         color: glass.textPrimary,
                         fontSize: 17,
                       ),
@@ -126,7 +125,7 @@ class _AddMealViewState extends State<AddMealView> {
                               Gap(height * 0.01),
                               Text(
                                 'Add a photo of this meal',
-                                style: TextStyles.buttonSmall.copyWith(
+                                style: context.text.buttonSmall.copyWith(
                                   color: glass.hintText,
                                   fontSize: 13,
                                 ),
@@ -207,13 +206,13 @@ class _AddMealViewState extends State<AddMealView> {
                               children: [
                                 Text(
                                   'Camera',
-                                  style: TextStyles.headline2.copyWith(
+                                  style: context.text.headline2.copyWith(
                                     color: glass.textPrimary,
                                   ),
                                 ),
                                 Text(
                                   'Take a Photo',
-                                  style: TextStyles.headline2.copyWith(
+                                  style: context.text.headline2.copyWith(
                                     color: glass.hintText,
                                     fontWeight: FontWeight.w100,
                                     fontSize: 10,
@@ -259,13 +258,13 @@ class _AddMealViewState extends State<AddMealView> {
                               children: [
                                 Text(
                                   'Gallery',
-                                  style: TextStyles.headline2.copyWith(
+                                  style: context.text.headline2.copyWith(
                                     color: glass.textPrimary,
                                   ),
                                 ),
                                 Text(
                                   'Choose from gallery',
-                                  style: TextStyles.headline2.copyWith(
+                                  style: context.text.headline2.copyWith(
                                     color: glass.hintText,
                                     fontWeight: FontWeight.w100,
                                     fontSize: 10,

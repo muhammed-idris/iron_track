@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:iron_track/core/theme/theme_context.dart';
 import 'package:iron_track/shared/containers/crystal_container.dart';
-import '../../../core/constants/text_styles.dart';
 import '../../../shared/customs/custom_snack_bar.dart';
 
 class CaloriesAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -33,7 +32,7 @@ class CaloriesAppBar extends StatelessWidget implements PreferredSizeWidget {
               children: [
                 Text(
                   title,
-                  style: TextStyles.appBar.copyWith(
+                  style: context.text.appBar.copyWith(
                     color: glass.textPrimary,
                     fontSize: 22,
                   ),

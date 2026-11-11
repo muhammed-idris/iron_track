@@ -6,11 +6,9 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:gap/gap.dart';
 import 'package:iron_track/core/constants/colors_manager.dart';
 import 'package:iron_track/features/calories/views/add_meal_view.dart';
-import 'package:iron_track/features/calories/widgets/calories_button.dart';
 import 'package:iron_track/features/calories/widgets/nutrient_card.dart';
 import 'package:iron_track/shared/containers/crystal_container.dart';
 import 'package:iron_track/shared/containers/info_divider.dart';
-import '../../../core/constants/text_styles.dart';
 import '../../../shared/customs/custom_animate.dart';
 import '../widgets/calories_app_bar.dart';
 import '../widgets/calories_ring_widget.dart';
@@ -25,7 +23,7 @@ class CaloriesView extends StatefulWidget {
 }
 
 class _CaloriesViewState extends State<CaloriesView> {
-
+  bool _pressed = false;
 
   @override
   Widget build(BuildContext context) {
@@ -54,12 +52,61 @@ class _CaloriesViewState extends State<CaloriesView> {
                     children: [
                       Text(
                         "Total Macros",
-                        style: TextStyles.buttonSmall.copyWith(
+                        style: context.text.buttonSmall.copyWith(
                           color: glass.textPrimary,
                           fontSize: 15,
                         ),
                       ),
-                      CaloriesButton(),
+                      GestureDetector(
+                        onTap: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => const AddMealView(),
+                          ),
+                        ),
+                        onTapDown: (_) {
+                          HapticFeedback.lightImpact();
+                          setState(() => _pressed = true);
+                        },
+                        onTapUp: (_) => setState(() => _pressed = false),
+                        onTapCancel: () => setState(() => _pressed = false),
+                        child: AnimatedScale(
+                          scale: _pressed ? 0.94 : 1.0,
+                          duration: const Duration(milliseconds: 120),
+                          curve: Curves.easeOut,
+                          child: CustomGlassCard(
+                            shadow: [
+                              BoxShadow(
+                                color: glass.shadowColor,
+                                blurRadius: 2,
+                                offset: const Offset(0, 3),
+                              ),
+                            ],
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 10,
+                              vertical: 10,
+                            ),
+                            margin: EdgeInsets.zero,
+                            backgroundColor: glass.redButton,
+                            borderRadius: 12,
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                const Icon(
+                                  CupertinoIcons.add,
+                                  color: AppColor.white,
+                                  size: 17,
+                                ),
+                                const Gap(5),
+                                Text(
+                                  "Add Meal",
+                                  style: context.text.buttonSmall,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                   Gap(height * 0.01),

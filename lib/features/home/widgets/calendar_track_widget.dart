@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import '../../../core/constants/colors_manager.dart';
-import '../../../core/constants/text_styles.dart';
 import '../../../core/theme/theme_context.dart';
 import '../../../shared/containers/crystal_container.dart';
 import 'month_calender.dart';
@@ -75,14 +74,14 @@ class _CalendarTrackWidgetState extends State<CalendarTrackWidget> {
                   children: [
                     Text(
                       '${_month.year}',
-                      style: TextStyles.numbers.copyWith(
+                      style: context.text.numbers.copyWith(
                         color: glass.textPrimary,
                       ),
                     ),
                     Gap(height * 0.005),
                     Text(
                       'One square per day, lit on the days you trained',
-                      style: TextStyles.badge.copyWith(color: glass.hintText),
+                      style: context.text.badge.copyWith(color: glass.hintText),
                     ),
                   ],
                 ),
@@ -93,14 +92,14 @@ class _CalendarTrackWidgetState extends State<CalendarTrackWidget> {
                 children: [
                   Text(
                     '$yearTotal',
-                    style: TextStyles.numbers.copyWith(
+                    style: context.text.numbers.copyWith(
                       color: AppColor.primary,
                     ),
                   ),
                   Gap(width * 0.005),
                   Text(
                     'days',
-                    style: TextStyles.badge.copyWith(color: glass.hintText),
+                    style: context.text.badge.copyWith(color: glass.hintText),
                   ),
                 ],
               ),

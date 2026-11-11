@@ -3,7 +3,6 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gap/gap.dart';
 import 'package:iron_track/core/constants/colors_manager.dart';
-import 'package:iron_track/core/constants/text_styles.dart';
 import 'package:iron_track/core/theme/theme_context.dart';
 import 'package:iron_track/features/home/widgets/start_workout_btn.dart';
 import 'package:iron_track/shared/containers/crystal_container.dart';
@@ -38,8 +37,12 @@ class _WorkoutCardState extends State<WorkoutCard> {
     final size = MediaQuery.sizeOf(context);
     final width = size.width;
     final height = size.height;
+
     final glass = context.glass;
-    final totalTime = widget.workout.exercises.fold<int>(0,
+    final colorScheme = Theme.of(context).colorScheme;
+
+    final totalTime = widget.workout.exercises.fold<int>(
+      0,
       (sum, exercise) => sum + ((exercise.setsCount ?? 0) * 4),
     );
 
@@ -72,7 +75,7 @@ class _WorkoutCardState extends State<WorkoutCard> {
             children: [
               Image.asset(
                 glass.upcomingText,
-                height: height * .2,
+                height: height * .20,
                 width: width * .4,
                 fit: BoxFit.cover,
               ),
@@ -90,7 +93,7 @@ class _WorkoutCardState extends State<WorkoutCard> {
               children: [
                 Text(
                   widget.workout.title,
-                  style: TextStyles.headline1.copyWith(
+                  style: context.text.headline1.copyWith(
                     color: glass.textPrimary,
                     fontSize: 20,
                   ),
@@ -107,7 +110,7 @@ class _WorkoutCardState extends State<WorkoutCard> {
                     Gap(width * .005),
                     Text(
                       formatExerciseCount(widget.workout.exercises.length),
-                      style: TextStyles.badge.copyWith(
+                      style: context.text.badge.copyWith(
                         color: glass.hintText,
                         fontWeight: FontWeight.w500,
                       ),
@@ -130,7 +133,7 @@ class _WorkoutCardState extends State<WorkoutCard> {
 
                     Text(
                       "≈ $totalTime min",
-                      style: TextStyles.badge.copyWith(
+                      style: context.text.badge.copyWith(
                         color: glass.hintText,
                         fontWeight: FontWeight.w500,
                       ),
@@ -161,13 +164,13 @@ class _WorkoutCardState extends State<WorkoutCard> {
                 Gap(width * .017),
                 Text(
                   widget.workout.weekday ?? "",
-                  style: TextStyles.body.copyWith(color: glass.textPrimary),
+                  style: context.text.body.copyWith(color: glass.textPrimary),
                 ),
                 const Spacer(),
                 CustomGlassCard(
                       margin: EdgeInsets.zero,
                       borderRadius: 12,
-                      height: height * .035,
+                      height: height * .03,
                       padding: EdgeInsets.symmetric(horizontal: width * .025),
                       gradient: LinearGradient(colors: glass.softBadgeGradient),
                       child: FittedBox(
@@ -175,7 +178,7 @@ class _WorkoutCardState extends State<WorkoutCard> {
                         child: Center(
                           child: Text(
                             widget.dateLabel,
-                            style: TextStyles.bodySmall.copyWith(
+                            style: context.text.bodySmall.copyWith(
                               color: glass.textPrimary,
                             ),
                           ),
@@ -183,13 +186,6 @@ class _WorkoutCardState extends State<WorkoutCard> {
                       ),
                     )
                     .animate()
-                    .fadeIn(duration: 400.ms)
-                    .slideX(
-                      begin: .15,
-                      end: 0,
-                      duration: 500.ms,
-                      curve: Curves.easeOutCubic,
-                    ),
               ],
             ),
           ),

@@ -1,6 +1,5 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-import 'package:iron_track/core/constants/text_styles.dart';
 import '../../../core/constants/colors_manager.dart';
 import '../../../core/theme/theme_context.dart';
 import '../../../shared/containers/crystal_container.dart';
@@ -101,14 +100,14 @@ class VolumeChart extends StatelessWidget {
                   children: [
                     Text(
                       title,
-                      style: TextStyles.bodySmall.copyWith(
+                      style: context.text.bodySmall.copyWith(
                         color: glass.hintText,
                       ),
                     ),
                     const SizedBox(height: 3),
                     Text(
                       totalVolumeLabel,
-                      style: TextStyles.subtitle.copyWith(
+                      style: context.text.subtitle.copyWith(
                         color: glass.textMuted,
                         fontSize: 21,
                         fontWeight: FontWeight.bold,
@@ -135,7 +134,7 @@ class VolumeChart extends StatelessWidget {
                       return touchedSpots.map((spot) {
                         return LineTooltipItem(
                           spot.y.toStringAsFixed(1),
-                          TextStyles.bodySmall.copyWith(
+                          context.text.bodySmall.copyWith(
                             color: AppColor.primary,
                             fontWeight: FontWeight.bold,
                           ),
@@ -173,7 +172,7 @@ class VolumeChart extends StatelessWidget {
                         alignment: Alignment.centerLeft,
                         child: Text(
                           value == 0 ? '0' : '${(value / 1000).round()}k',
-                          style: TextStyles.bodySmall.copyWith(
+                          style: context.text.bodySmall.copyWith(
                             color: glass.hintText,
                             fontSize: 9,
                           ),
@@ -195,7 +194,7 @@ class VolumeChart extends StatelessWidget {
                           padding: const EdgeInsets.only(top: 8),
                           child: Text(
                             label,
-                            style: TextStyles.subtitle.copyWith(
+                            style: context.text.subtitle.copyWith(
                               color: glass.hintText,
                               fontSize: 9,
                             ),

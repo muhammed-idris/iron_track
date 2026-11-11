@@ -3,7 +3,6 @@ import 'package:gap/gap.dart';
 import 'package:iron_track/core/theme/theme_context.dart';
 import 'package:iron_track/shared/containers/crystal_container.dart';
 import '../../../core/constants/colors_manager.dart';
-import '../../../core/constants/text_styles.dart';
 import '../../../shared/customs/custom_btn.dart';
 import '../widgets/auth_text_from_field.dart';
 import '../widgets/top_icon_widget.dart';
@@ -96,7 +95,7 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
                         children: [
                           Text(
                             'Forgotten Password',
-                            style: TextStyles.appBar.copyWith(
+                            style: context.text.appBar.copyWith(
                               color: glass.textMuted,
                             ),
                           ),

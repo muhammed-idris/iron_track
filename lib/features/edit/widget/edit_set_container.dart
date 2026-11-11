@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:gap/gap.dart';
-import 'package:iron_track/core/constants/text_styles.dart';
 import 'package:iron_track/core/theme/theme_context.dart';
 import 'package:iron_track/shared/containers/crystal_container.dart';
 import 'package:iron_track/shared/customs/custom_btn.dart';
@@ -151,7 +150,7 @@ class _FieldLabel extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
       child: Text(
         text,
-        style: TextStyles.buttonSmall.copyWith(color: color),
+        style: context.text.buttonSmall.copyWith(color: color),
       ),
     );
   }

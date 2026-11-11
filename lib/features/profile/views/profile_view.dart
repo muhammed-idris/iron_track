@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:gap/gap.dart';
-import 'package:iron_track/core/constants/text_styles.dart';
 import 'package:iron_track/features/auth/view/login_view.dart';
 import '../../../core/theme/theme_context.dart';
 import '../../../shared/containers/crystal_container.dart';
@@ -17,9 +16,8 @@ class ProfileView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.sizeOf(context);
-    final width = size.width;
-    final height = size.height;
+    final width = MediaQuery.sizeOf(context).width;
+    final height = MediaQuery.sizeOf(context).height;
     final glass = context.glass;
 
     return Scaffold(
@@ -47,7 +45,7 @@ class ProfileView extends StatelessWidget {
                 children: [
                   Text(
                     'Settings',
-                    style: TextStyles.headline2.copyWith(
+                    style: context.text.headline2.copyWith(
                       color: glass.hintText,
                     ),
                   ),

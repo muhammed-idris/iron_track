@@ -6,7 +6,6 @@ import 'package:intl/intl.dart';
 import 'package:iron_track/features/log/widgets/save_workout_button.dart';
 import 'package:iron_track/shared/containers/crystal_container.dart';
 import '../../../../core/constants/colors_manager.dart';
-import '../../../../core/constants/text_styles.dart';
 import '../../../../shared/customs/custom_animate.dart';
 import '../../../../shared/customs/custom_snack_bar.dart';
 import '../../../home/logic/iron_track_helper.dart';
@@ -131,7 +130,7 @@ class _WeekSelectorWidgetState extends State<WeekSelectorWidget> {
 
                                     Text(
                                       formatDayLabel(DateTime.now()),
-                                      style: TextStyles.bodySmall.copyWith(
+                                      style: context.text.bodySmall.copyWith(
                                         color: glass.textPrimary,
                                         fontWeight: FontWeight.w600,
                                       ),
@@ -231,7 +230,7 @@ class _WeekSelectorWidgetState extends State<WeekSelectorWidget> {
                                             Center(
                                               child: Text(
                                                 days[index],
-                                                style: TextStyles.buttonSmall
+                                                style: context.text.buttonSmall
                                                     .copyWith(
                                                       color: active
                                                           ? AppColor.white

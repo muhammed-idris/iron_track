@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import '../../core/constants/colors_manager.dart';
-import '../../core/constants/text_styles.dart';
 import '../../core/theme/theme_context.dart';
 import '../containers/crystal_container.dart';
 
@@ -282,7 +281,7 @@ class _SnackBarOverlayState extends State<_SnackBarOverlay>
                           children: [
                             Text(
                               widget.typeMessage,
-                              style: TextStyles.headline2.copyWith(
+                              style: context.text.headline2.copyWith(
                                 color: widget.textColor,
                                 fontWeight: FontWeight.w600,
                               ),
@@ -290,7 +289,7 @@ class _SnackBarOverlayState extends State<_SnackBarOverlay>
                             const SizedBox(height: 2),
                             Text(
                               widget.message,
-                              style: TextStyles.body.copyWith(
+                              style: context.text.body.copyWith(
                                 color: glass.hintText,
                               ),
                             ),

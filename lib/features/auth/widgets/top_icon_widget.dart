@@ -3,7 +3,6 @@ import 'package:iron_track/core/theme/theme_context.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gap/gap.dart';
 import 'package:iron_track/core/constants/colors_manager.dart';
-import '../../../core/constants/text_styles.dart';
 import '../../../shared/containers/crystal_container.dart';
 
 class TopIconWidget extends StatelessWidget {
@@ -46,14 +45,14 @@ class TopIconWidget extends StatelessWidget {
         Gap(height * 0.01),
         Text(
           "IRON TRACK",
-          style: TextStyles.appBarTitle.copyWith(
+          style: context.text.appBarTitle.copyWith(
             color: glass.textPrimary,
             fontSize: 40,
           ),
         ),
         Text(
           "Track your workouts",
-          style: TextStyles.headline1.copyWith(color: glass.hintText),
+          style: context.text.headline1.copyWith(color: glass.hintText),
         ),
       ],
     );

@@ -4,7 +4,6 @@ import 'package:gap/gap.dart';
 import 'package:iron_track/core/constants/colors_manager.dart';
 import 'package:iron_track/core/theme/theme_context.dart';
 import '../../../core/constants/app_theme_extension.dart';
-import '../../../core/constants/text_styles.dart';
 import '../../../shared/containers/crystal_container.dart';
 import '../../../shared/containers/gradient_container.dart';
 
@@ -32,10 +31,10 @@ class ExerciseSetCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final resolvedWidth = width ?? MediaQuery.sizeOf(context).width;
     final resolvedGlass = glass ?? context.glass;
-    final dividerStyle = TextStyles.appBar.copyWith(
+    final dividerStyle = context.text.appBar.copyWith(
       color: resolvedGlass.mutedBorder,
     );
-    final valueStyle = TextStyles.appBar.copyWith(
+    final valueStyle = context.text.appBar.copyWith(
       color: resolvedGlass.textPrimary,
     );
 
@@ -85,7 +84,7 @@ class ExerciseSetCard extends StatelessWidget {
               child: Center(
                 child: Text(
                   '${index + 1}',
-                  style: TextStyles.headline2,
+                  style: context.text.headline2.copyWith(color: AppColor.white),
                 ),
               ),
             ),

@@ -6,7 +6,6 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:gap/gap.dart';
 import 'package:iron_track/features/home/data/exercise_model.dart';
 import '../../../../core/constants/colors_manager.dart';
-import '../../../../core/constants/text_styles.dart';
 import '../../../../shared/containers/crystal_container.dart';
 import '../../../edit/view/edit_exercise_screen.dart';
 import '../../../home/logic/iron_track_helper.dart';
@@ -50,7 +49,7 @@ class ExerciseListHeader extends StatelessWidget {
               child: Text(
                 "$count",
                 key: ValueKey(count),
-                style: TextStyles.headline1.copyWith(color: glass.textMuted),
+                style: context.text.headline1.copyWith(color: glass.textMuted),
               ),
             ),
           ),
@@ -58,7 +57,7 @@ class ExerciseListHeader extends StatelessWidget {
         const Gap(7),
         Text(
           _label(count),
-          style: TextStyles.headline1.copyWith(color: glass.textPrimary),
+          style: context.text.headline1.copyWith(color: glass.textPrimary),
         ),
         const Spacer(),
         _AddButton(
@@ -115,13 +114,13 @@ class _AddButtonState extends State<_AddButton> {
           padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
           margin: EdgeInsets.zero,
           backgroundColor: glass.redButton,
-          borderRadius: 15,
+          borderRadius: 12,
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
               const Icon(CupertinoIcons.add, color: AppColor.white, size: 17),
               const Gap(5),
-              Text("Add Exercise", style: TextStyles.buttonSmall),
+              Text("Add Exercise", style: context.text.buttonSmall),
             ],
           ),
         ),
@@ -175,13 +174,13 @@ class ExerciseListEmpty extends StatelessWidget {
             Text(
               "No exercises yet ",
               textAlign: TextAlign.center,
-              style: TextStyles.appBar.copyWith(color: glass.textPrimary),
+              style: context.text.appBar.copyWith(color: glass.textPrimary),
             ),
             Gap(height * 0.005),
             Text(
               "Tap the Add Exercise Button to get started\n and build your workout.   ",
               textAlign: TextAlign.center,
-              style: TextStyles.headline2.copyWith(color: glass.hintText),
+              style: context.text.headline2.copyWith(color: glass.hintText),
             ),
           ],
         ),

@@ -9,7 +9,6 @@ import 'package:iron_track/shared/containers/info_divider.dart';
 import 'package:iron_track/shared/customs/custom_btn.dart';
 
 import '../../../core/constants/colors_manager.dart';
-import '../../../core/constants/text_styles.dart';
 import '../../../shared/customs/custom_snack_bar.dart';
 import '../../home/widgets/delete_widget.dart';
 import '../../log/widgets/workout_refresh_notifier.dart';
@@ -345,7 +344,7 @@ class _ExerciseTitleHeader extends StatelessWidget {
           children: [
             Text(
               '|',
-              style: TextStyles.appBarTitle.copyWith(
+              style: context.text.appBarTitle.copyWith(
                 color: glass.textMuted,
               ),
             ),
@@ -356,7 +355,7 @@ class _ExerciseTitleHeader extends StatelessWidget {
                   scrollDirection: Axis.horizontal,
                   child: Text(
                     title,
-                    style: TextStyles.appBarTitle.copyWith(
+                    style: context.text.appBarTitle.copyWith(
                       color: glass.textPrimary,
                     ),
                   ),
@@ -392,8 +391,8 @@ class _SetTableColumnsHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final labelStyle = TextStyles.headline2.copyWith(color: glass.copyColor);
-    final dividerStyle = TextStyles.appBar.copyWith(color: glass.mutedBorder);
+    final labelStyle = context.text.headline2.copyWith(color: glass.copyColor);
+    final dividerStyle = context.text.appBar.copyWith(color: glass.mutedBorder);
 
     return Row(
       children: [
@@ -429,7 +428,7 @@ class _SetTableColumnsHeader extends StatelessWidget {
               Gap(width * 0.01),
               Text(
                 'Delete',
-                style: TextStyles.subtitle.copyWith(
+                style: context.text.subtitle.copyWith(
                   color: glass.textPrimary,
                 ),
               ),

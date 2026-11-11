@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:iron_track/core/constants/text_styles.dart';
 import '../../../core/theme/theme_context.dart';
 
 class SettingsTile extends StatelessWidget {
@@ -36,7 +35,7 @@ class SettingsTile extends StatelessWidget {
               Expanded(
                 child: Text(
                   title,
-                  style: TextStyles.headline1.copyWith(
+                  style: context.text.headline1.copyWith(
                     color: glass.textPrimary,
                   ),
                 ),

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:iron_track/core/constants/colors_manager.dart';
-import 'package:iron_track/core/constants/text_styles.dart';
 import 'package:iron_track/core/theme/theme_context.dart';
 
 class AuthTextField extends StatefulWidget {
@@ -63,7 +62,7 @@ class _AuthTextFieldState extends State<AuthTextField> {
           validator: widget.validator,
           onChanged: widget.onChanged,
           autofillHints: widget.autofillHints,
-          style: TextStyles.bodySmall.copyWith(color: glass.textPrimary),
+          style: context.text.bodySmall.copyWith(color: glass.textPrimary),
           cursorColor: AppColor.primary,
           decoration: InputDecoration(
             hintText: widget.hintText,
@@ -107,7 +106,7 @@ class _AuthTextFieldState extends State<AuthTextField> {
               borderRadius: BorderRadius.circular(12),
               borderSide: const BorderSide(color: AppColor.danger, width: 2),
             ),
-            errorStyle: TextStyles.bodySmall.copyWith(color: AppColor.danger),
+            errorStyle: context.text.bodySmall.copyWith(color: AppColor.danger),
             fillColor: glass.mutedBorder,
             filled: true,
             contentPadding: const EdgeInsets.symmetric(

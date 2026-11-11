@@ -101,33 +101,25 @@ class GlassTheme extends ThemeExtension<GlassTheme> {
     upcomingText: 'assets/images/person.png',
     weekSelector: 'assets/images/week_background.png',
     borderColors: [
-      GridColor.grey830,
-      GridColor.grey875,
-      GridColor.grey875,
-      GridColor.grey875,
+      Color(0xFF353535),
+      Color(0xFF292929),
+      Color(0xFF191919),
+
     ],
     infoDivider: AppColor.primary,
     hintText: AppColor.grey,
     rootBackColor: GlassColors.glassDark4,
     selectedColor: AppColor.grey400,
     unSelectedColor: AppColor.grey600,
-    backGround: Color(0xFF000000),
+    backGround: Color(0xFF0B0B0B),
     exerciseBackground: [
-      GridColor.grey890,
-      Color(0xFF0D0D0E),
+      Color(0xFF202020),
+      Color(0xFF191919),
+      Color(0xFF141414),
     ],
-    selectedDay: [
-      GridColor.red600,
-      GridColor.red800,
-    ],
-    unselectedDay: [
-      GridColor.grey800,
-      GridColor.grey840,
-    ],
-    surfaceGradient: [
-      GridColor.grey850,
-      GridColor.grey890,
-    ],
+    selectedDay: [GridColor.red600, GridColor.red800],
+    unselectedDay: [GridColor.grey800, GridColor.grey840],
+    surfaceGradient: [GridColor.grey850, GridColor.grey890],
     surfaceBorder: GridColor.grey870,
     accentSurfaceGradient: [
       Color(0xFF3E0512),
@@ -135,10 +127,7 @@ class GlassTheme extends ThemeExtension<GlassTheme> {
       Color(0xFF0A0102),
     ],
     accentSurfaceBorder: GlassColors.glassPrimary4,
-    badgeGradient: [
-      GlassColors.red300,
-      GlassColors.red300,
-    ],
+    badgeGradient: [GlassColors.red300, GlassColors.red300],
     softBadgeGradient: [
       GlassColors.glassPrimary1,
       GlassColors.glassPrimary1,
@@ -178,10 +167,7 @@ class GlassTheme extends ThemeExtension<GlassTheme> {
     buttonColor: GlassColors.glassWhite1,
     upcomingText: 'assets/images/person_light.png',
     weekSelector: 'assets/images/week_background_light.png',
-    borderColors: [
-      AppColor.white,
-      GridColor.white950,
-    ],
+    borderColors: [AppColor.white, GridColor.white950],
     infoDivider: GridColor.red300,
     hintText: GlassColors.grey850,
     unSelectedColor: GlassColors.white700,
@@ -189,36 +175,15 @@ class GlassTheme extends ThemeExtension<GlassTheme> {
     rootBackColor: Colors.transparent,
     indicatorColor: GlassColors.glassRed1,
     backGround: GridColor.white800,
-    exerciseBackground: [
-      GridColor.white900,
-      GridColor.white950,
-    ],
-    selectedDay: [
-      GlassColors.red300,
-      GridColor.red400,
-    ],
-    unselectedDay: [
-      GridColor.grey300,
-      GridColor.grey300,
-    ],
-    surfaceGradient: [
-      Colors.white,
-      GridColor.white950,
-    ],
+    exerciseBackground: [GridColor.white900, GridColor.white950],
+    selectedDay: [GlassColors.red300, GridColor.red400],
+    unselectedDay: [GridColor.grey300, GridColor.grey300],
+    surfaceGradient: [Colors.white, GridColor.white950],
     surfaceBorder: GlassColors.glassDark4,
-    accentSurfaceGradient: [
-      GlassColors.glassRed2,
-      GlassColors.glassRed1,
-    ],
+    accentSurfaceGradient: [GlassColors.glassRed2, GlassColors.glassRed1],
     accentSurfaceBorder: GlassColors.glassPrimary3,
-    badgeGradient: [
-      GlassColors.red300,
-      GlassColors.red400,
-    ],
-    softBadgeGradient: [
-      GlassColors.glassPrimary1,
-      GlassColors.glassPrimary2,
-    ],
+    badgeGradient: [GlassColors.red300, GlassColors.red400],
+    softBadgeGradient: [GlassColors.glassPrimary1, GlassColors.glassPrimary2],
     softBadgeBorderGradient: [
       GlassColors.glassPrimary1,
       GlassColors.glassPrimary2,

@@ -3,7 +3,6 @@ import 'package:gap/gap.dart';
 import 'package:iron_track/core/theme/theme_context.dart';
 import 'package:iron_track/shared/containers/crystal_container.dart';
 import '../../../core/constants/colors_manager.dart';
-import '../../../core/constants/text_styles.dart';
 import '../../../shared/customs/custom_btn.dart';
 import '../../../shared/customs/custom_snack_bar.dart';
 import '../widgets/top_icon_widget.dart';
@@ -121,7 +120,7 @@ class _ForgetPassCodeViewState extends State<ForgetPassCodeView> {
                       children: [
                         Text(
                           'Forgotten Password',
-                          style: TextStyles.appBar.copyWith(
+                          style: context.text.appBar.copyWith(
                             color: glass.textMuted,
                           ),
                         ),
@@ -130,7 +129,7 @@ class _ForgetPassCodeViewState extends State<ForgetPassCodeView> {
                           children: [
                             Text(
                               'Enter The Code',
-                              style: TextStyles.headline2.copyWith(
+                              style: context.text.headline2.copyWith(
                                 color: glass.hintText,
                               ),
                             ),
@@ -153,7 +152,7 @@ class _ForgetPassCodeViewState extends State<ForgetPassCodeView> {
                                   textAlign: TextAlign.center,
                                   keyboardType: TextInputType.number,
                                   maxLength: 1,
-                                  style: TextStyles.appBar.copyWith(
+                                  style: context.text.appBar.copyWith(
                                     color: glass.textPrimary,
                                   ),
                                   decoration: InputDecoration(

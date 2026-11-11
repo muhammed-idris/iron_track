@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import '../../core/constants/colors_manager.dart';
-import '../../core/constants/text_styles.dart';
 import '../../core/theme/theme_context.dart';
 import '../containers/crystal_container.dart';
 
@@ -39,7 +38,7 @@ class NoConnectionScreen extends StatelessWidget {
             Gap(height * 0.07),
             Text(
               'No Connection',
-              style: TextStyles.appBar.copyWith(
+              style: context.text.appBar.copyWith(
                 color: glass.textPrimary,
                 fontWeight: FontWeight.bold,
                 fontSize: 40,
@@ -49,7 +48,7 @@ class NoConnectionScreen extends StatelessWidget {
             Text(
               textAlign: TextAlign.center,
               'You’re offline. Check your internet\nconnection and try again.',
-              style: TextStyles.headline1.copyWith(color: glass.hintText),
+              style: context.text.headline1.copyWith(color: glass.hintText),
             ),
             const Spacer(),
             GestureDetector(
@@ -74,7 +73,7 @@ class NoConnectionScreen extends StatelessWidget {
                     const Gap(5),
                     Text(
                       'Refresh',
-                      style: TextStyles.appBar.copyWith(
+                      style: context.text.appBar.copyWith(
                         color: AppColor.white,
                         fontWeight: FontWeight.bold,
                       ),

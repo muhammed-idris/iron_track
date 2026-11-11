@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:iron_track/core/constants/colors_manager.dart';
-import 'package:iron_track/core/constants/text_styles.dart';
 import 'package:iron_track/core/theme/theme_context.dart';
 import 'package:iron_track/features/home/widgets/levels_widget.dart';
 import 'package:iron_track/shared/containers/crystal_container.dart';
@@ -89,7 +88,7 @@ class LevelsView extends StatelessWidget {
                           children: [
                             Text(
                               name,
-                              style: TextStyles.headline1.copyWith(
+                              style: context.text.headline1.copyWith(
                                 color: isLocked
                                     ? glass.textMuted
                                     : glass.textPrimary,
@@ -97,7 +96,7 @@ class LevelsView extends StatelessWidget {
                             ),
                             Text(
                               'Level $level',
-                              style: TextStyles.body.copyWith(
+                              style: context.text.body.copyWith(
                                 color: glass.hintText,
                               ),
                             ),
@@ -116,7 +115,7 @@ class LevelsView extends StatelessWidget {
                             const SizedBox(height: 2),
                             Text(
                               '${displayXp.toStringAsFixed(0)} / ${maxXp.toStringAsFixed(0)}',
-                              style: TextStyles.body.copyWith(
+                              style: context.text.body.copyWith(
                                 color: glass.textPrimary,
                               ),
                             ),

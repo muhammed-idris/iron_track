@@ -5,7 +5,6 @@ import 'package:iron_track/features/auth/view/sign_up_view.dart';
 import 'package:iron_track/features/auth/widgets/top_icon_widget.dart';
 import 'package:iron_track/shared/containers/crystal_container.dart';
 import '../../../core/constants/colors_manager.dart';
-import '../../../core/constants/text_styles.dart';
 import '../../../root/root_screen.dart';
 import '../../../shared/customs/custom_btn.dart';
 import '../widgets/auth_text_from_field.dart';
@@ -91,7 +90,7 @@ class _LoginViewState extends State<LoginView> {
                         children: [
                           Text(
                             'Login',
-                            style: TextStyles.appBar.copyWith(
+                            style: context.text.appBar.copyWith(
                               color: glass.textMuted,
                             ),
                           ),
@@ -138,7 +137,7 @@ class _LoginViewState extends State<LoginView> {
                                 ),
                                 label: Text(
                                   'Remember Me',
-                                  style: TextStyles.buttonSmall.copyWith(
+                                  style: context.text.buttonSmall.copyWith(
                                     color: glass.hintText,
                                   ),
                                 ),
@@ -160,7 +159,7 @@ class _LoginViewState extends State<LoginView> {
                                 ),
                                 child: Text(
                                   'Forgot Password?',
-                                  style: TextStyles.bodySmall.copyWith(
+                                  style: context.text.bodySmall.copyWith(
                                     color: glass.textMuted,
                                     fontWeight: FontWeight.w600,
                                   ),
@@ -188,7 +187,7 @@ class _LoginViewState extends State<LoginView> {
                             children: [
                               Text(
                                 "Don't have an account?",
-                                style: TextStyles.bodySmall.copyWith(
+                                style: context.text.bodySmall.copyWith(
                                   color: glass.hintText,
                                 ),
                               ),
@@ -207,7 +206,7 @@ class _LoginViewState extends State<LoginView> {
                                 ),
                                 child: Text(
                                   'Sign Up',
-                                  style: TextStyles.bodySmall.copyWith(
+                                  style: context.text.bodySmall.copyWith(
                                     color: AppColor.primary,
                                     fontWeight: FontWeight.w600,
                                   ),
@@ -231,7 +230,7 @@ class _LoginViewState extends State<LoginView> {
                             ),
                             child: Text(
                               'Guest ?',
-                              style: TextStyles.headline1.copyWith(
+                              style: context.text.headline1.copyWith(
                                 color: AppColor.primary,
                                 fontWeight: FontWeight.w600,
                               ),

@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:iron_track/core/theme/theme_context.dart';
 import 'package:gap/gap.dart';
-import 'package:iron_track/core/constants/text_styles.dart';
 import 'package:iron_track/features/home/data/exercise_model.dart';
 import 'package:iron_track/shared/containers/crystal_container.dart';
 import 'package:iron_track/shared/customs/custom_btn.dart';
 import 'package:iron_track/shared/customs/custom_snack_bar.dart';
 import 'package:iron_track/shared/customs/custom_txt_field.dart';
 import '../../../core/constants/colors_manager.dart';
-import '../../../shared/customs/custom_elevated_button.dart';
 import '../../home/logic/iron_track_helper.dart';
 
 enum WeightUnit { kg, lbs }
@@ -356,7 +354,7 @@ class _AddExerciseWidgetState extends State<AddExerciseWidget> {
           const Gap(5),
           Text(
             text,
-            style: TextStyles.headline2.copyWith(
+            style: context.text.headline2.copyWith(
                 color: context.glass.textPrimary),
           ),
         ],

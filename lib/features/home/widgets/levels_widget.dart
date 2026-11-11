@@ -4,7 +4,6 @@ import 'package:iron_track/core/theme/theme_context.dart';
 import 'package:iron_track/features/home/levels/levels_view.dart';
 import 'package:iron_track/shared/badges/badges_level.dart';
 import '../../../core/constants/colors_manager.dart';
-import '../../../core/constants/text_styles.dart';
 import '../../../shared/badges/custom_badge.dart';
 import '../../../shared/containers/crystal_container.dart';
 
@@ -93,9 +92,8 @@ class LevelsWidget extends StatelessWidget {
                 children: [
                   Text(
                     currentTier['name'] as String,
-                    style: TextStyles.headline2.copyWith(
+                    style: context.text.headline1.copyWith(
                       color: glass.textPrimary,
-                      fontWeight: FontWeight.w700,
                     ),
                   ),
                   const SizedBox(height: 6),
@@ -111,7 +109,7 @@ class LevelsWidget extends StatelessWidget {
                   const SizedBox(height: 4),
                   Text(
                     '${volumeXp.toStringAsFixed(1)} / ${maxXp.toStringAsFixed(0)}',
-                    style: TextStyles.buttonSmall.copyWith(color: glass.hintText),
+                    style: context.text.buttonSmall.copyWith(color: glass.hintText),
                   ),
                 ],
               ),
@@ -119,7 +117,7 @@ class LevelsWidget extends StatelessWidget {
             Gap(width * 0.03),
             Text(
               'Lv. ${currentTier['level']}',
-              style: TextStyles.headline2.copyWith(
+              style: context.text.headline2.copyWith(
                 color: glass.textPrimary,
                 fontWeight: FontWeight.bold,
               ),

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:iron_track/core/theme/theme_context.dart';
 import 'package:gap/gap.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
-import '../../../core/constants/text_styles.dart';
 import '../../../shared/containers/crystal_container.dart';
 
 class CaloriesInfoCard extends StatefulWidget {
@@ -63,19 +62,19 @@ class _CaloriesInfoCardState extends State<CaloriesInfoCard> {
 
                   Text(
                     "${widget.calories}",
-                    style: TextStyles.appBar.copyWith(color: glass.textPrimary),
+                    style: context.text.appBar.copyWith(color: glass.textPrimary),
                   ),
                   Gap(width * 0.01),
                   Text(
                     "kcal",
-                    style: TextStyles.body.copyWith(color: glass.hintText),
+                    style: context.text.body.copyWith(color: glass.hintText),
                   ),
                 ],
               ),
               Gap(height * 0.005),
               Text(
                 "100 kcal left of your 650",
-                style: TextStyles.buttonSmall.copyWith(color: glass.hintText),
+                style: context.text.buttonSmall.copyWith(color: glass.hintText),
               ),
             ],
           ),
@@ -90,7 +89,7 @@ class _CaloriesInfoCardState extends State<CaloriesInfoCard> {
             animation: true,
             center: Text(
               "77 %",
-              style: TextStyles.buttonSmall.copyWith(color: glass.textPrimary),
+              style: context.text.buttonSmall.copyWith(color: glass.textPrimary),
             ),
           )
         ],

@@ -3,7 +3,6 @@ import 'package:gap/gap.dart';
 import 'package:iron_track/core/theme/theme_context.dart';
 import 'package:iron_track/shared/containers/crystal_container.dart';
 import '../../../core/constants/colors_manager.dart';
-import '../../../core/constants/text_styles.dart';
 import '../../../root/root_screen.dart';
 import '../../../shared/customs/custom_btn.dart';
 import '../../../shared/customs/custom_snack_bar.dart';
@@ -102,7 +101,7 @@ class _SignUpViewState extends State<SignUpView> {
                         children: [
                           Text(
                             'Sign Up',
-                            style: TextStyles.appBar.copyWith(
+                            style: context.text.appBar.copyWith(
                               color: glass.textMuted,
                             ),
                           ),
@@ -179,7 +178,7 @@ class _SignUpViewState extends State<SignUpView> {
                                 ),
                                 label: Text(
                                   'Agree to Terms & Conditions',
-                                  style: TextStyles.buttonSmall.copyWith(
+                                  style: context.text.buttonSmall.copyWith(
                                     color: glass.hintText,
                                   ),
                                 ),
@@ -202,7 +201,7 @@ class _SignUpViewState extends State<SignUpView> {
                             children: [
                               Text(
                                 'Already have an account?',
-                                style: TextStyles.bodySmall.copyWith(
+                                style: context.text.bodySmall.copyWith(
                                   color: glass.hintText,
                                 ),
                               ),
@@ -221,7 +220,7 @@ class _SignUpViewState extends State<SignUpView> {
                                 ),
                                 child: Text(
                                   'Log In',
-                                  style: TextStyles.bodySmall.copyWith(
+                                  style: context.text.bodySmall.copyWith(
                                     color: AppColor.primary,
                                     fontWeight: FontWeight.w600,
                                   ),

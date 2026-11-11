@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:iron_track/core/constants/colors_manager.dart';
-import 'package:iron_track/core/constants/text_styles.dart';
 import 'package:iron_track/core/theme/theme_context.dart';
 import 'package:iron_track/features/calories/views/calories_view.dart';
 import 'package:iron_track/features/home/views/home_view.dart';
@@ -40,7 +38,6 @@ class _RootScreenState extends State<RootScreen> {
     if (_selectedIndex == index) return;
     setState(() {
       _selectedIndex = index;
-      HapticFeedback.lightImpact();
     });
   }
 
@@ -84,7 +81,7 @@ class _RootScreenState extends State<RootScreen> {
             }),
             labelTextStyle: WidgetStateProperty.resolveWith((states) {
               final isSelected = states.contains(WidgetState.selected);
-              return TextStyles.headline1.copyWith(
+              return context.text.headline1.copyWith(
                 fontSize: isSelected ? 12 : 11,
                 color: isSelected ? AppColor.primary : glass.hintText,
               );

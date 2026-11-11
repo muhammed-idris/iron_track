@@ -6,7 +6,6 @@ import 'package:iron_track/features/home/data/exercise_model.dart';
 import 'package:iron_track/shared/containers/crystal_container.dart';
 import 'package:iron_track/shared/containers/gradient_container.dart';
 import '../../../../core/constants/colors_manager.dart';
-import '../../../../core/constants/text_styles.dart';
 import '../../../home/widgets/delete_widget.dart';
 
 class ExerciseDataWidget extends StatelessWidget {
@@ -100,7 +99,7 @@ class ExerciseDataWidget extends StatelessWidget {
                 borderRadius: 10,
                 colors: glass.selectedDay,
                 child: Center(
-                  child: Text('$exeNumber', style: TextStyles.headline2),
+                  child: Text('$exeNumber', style: context.text.headline2.copyWith(color: AppColor.white)),
                 ),
               ),
               Gap(width * 0.04),
@@ -110,7 +109,7 @@ class ExerciseDataWidget extends StatelessWidget {
                   children: [
                     Text(
                       exercise.exerciseTitle ?? '',
-                      style: TextStyles.headline1.copyWith(
+                      style: context.text.headline1.copyWith(
                         color: glass.textPrimary,
                       ),
                       maxLines: 2,
@@ -119,7 +118,7 @@ class ExerciseDataWidget extends StatelessWidget {
                     Gap(height * 0.01),
                     Text(
                       'Sets ${exercise.setsCount ?? 0}',
-                      style: TextStyles.bodySmall.copyWith(
+                      style: context.text.bodySmall.copyWith(
                         color: glass.textPrimary,
                       ),
                     ),

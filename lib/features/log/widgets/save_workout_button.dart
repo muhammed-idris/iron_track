@@ -4,7 +4,6 @@ import 'package:gap/gap.dart';
 import 'package:iron_track/core/theme/theme_context.dart';
 import '../../../core/constants/app_theme_extension.dart';
 import '../../../core/constants/colors_manager.dart';
-import '../../../core/constants/text_styles.dart';
 import '../../../shared/containers/crystal_container.dart';
 import '../../../shared/customs/custom_snack_bar.dart';
 import '../../home/logic/iron_track_helper.dart';
@@ -174,7 +173,7 @@ class _SaveWorkoutButtonState extends State<SaveWorkoutButton> {
                   ? widget.initialTitle!
                   : "Add Workout",
               key: ValueKey(widget.initialTitle),
-              style: TextStyles.appBar.copyWith(
+              style: context.text.appBar.copyWith(
                 color: glass.textPrimary,
                 fontWeight: FontWeight.w600,
                 fontSize: 25,
@@ -197,14 +196,14 @@ class _SaveWorkoutButtonState extends State<SaveWorkoutButton> {
           textCapitalization: TextCapitalization.words,
           cursorColor: AppColor.primary,
           cursorHeight: 26,
-          style: TextStyles.appBar.copyWith(
+          style: context.text.appBar.copyWith(
             color: glass.textPrimary,
             fontWeight: FontWeight.w700,
           ),
           decoration: InputDecoration(
             isDense: true,
             hintText: "Workout Title",
-            hintStyle: TextStyles.appBar.copyWith(color: glass.hintText),
+            hintStyle: context.text.appBar.copyWith(color: glass.hintText),
             contentPadding: const EdgeInsets.only(bottom: 12),
             border: InputBorder.none,
             enabledBorder: UnderlineInputBorder(
@@ -240,7 +239,7 @@ class _SaveWorkoutButtonState extends State<SaveWorkoutButton> {
                       const SizedBox(width: 8),
                       Text(
                         "Save Workout",
-                        style: TextStyles.buttonSmall.copyWith(
+                        style: context.text.buttonSmall.copyWith(
                           color: Colors.white,
                         ),
                       ),
@@ -271,7 +270,7 @@ class _SaveWorkoutButtonState extends State<SaveWorkoutButton> {
                       const SizedBox(width: 8),
                       Text(
                         "Delete",
-                        style: TextStyles.buttonSmall.copyWith(
+                        style: context.text.buttonSmall.copyWith(
                           color: glass.textMuted,
                         ),
                       ),

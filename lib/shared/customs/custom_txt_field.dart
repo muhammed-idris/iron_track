@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:iron_track/core/theme/theme_context.dart';
 import '../../core/constants/colors_manager.dart';
-import '../../core/constants/text_styles.dart';
-
 class CustomTxtField extends StatelessWidget {
   const CustomTxtField({
     super.key,
@@ -37,7 +35,7 @@ class CustomTxtField extends StatelessWidget {
       textCapitalization: TextCapitalization.words,
       readOnly: readOnly ?? false,
       keyboardType: keyboardType,
-      style: TextStyles.body.copyWith(color: glass.textPrimary),
+      style: context.text.body.copyWith(color: glass.textPrimary),
       cursorColor: AppColor.primary,
       controller: controller,
       onEditingComplete: onEditingComplete,
