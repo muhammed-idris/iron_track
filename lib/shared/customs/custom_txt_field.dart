@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:iron_track/core/constants/colors_manager.dart';
 import 'package:iron_track/core/theme/theme_context.dart';
-import '../../core/constants/colors_manager.dart';
+
+/// Reusable Custom Text Form Field integrated with [GlassTheme] and [AppTextStyles].
 class CustomTxtField extends StatelessWidget {
   const CustomTxtField({
     super.key,
@@ -39,16 +41,14 @@ class CustomTxtField extends StatelessWidget {
       cursorColor: AppColor.primary,
       controller: controller,
       onEditingComplete: onEditingComplete,
-      validator: (value) {
-        return null;
-      },
+      validator: (value) => null,
       decoration: InputDecoration(
         fillColor: fieldColor ?? Colors.transparent,
         filled: true,
         enabledBorder: OutlineInputBorder(
           borderRadius: borderCurve,
           borderSide: BorderSide(
-            color: borderColor ?? AppColor.grey600,
+            color: borderColor ?? glass.mutedBorder,
             width: 1,
           ),
         ),
@@ -60,8 +60,8 @@ class CustomTxtField extends StatelessWidget {
           ),
         ),
         hintText: hintText,
-        hintStyle: TextStyle(
-          color: hntColor ?? AppColor.grey600,
+        hintStyle: context.text.bodySmall.copyWith(
+          color: hntColor ?? glass.hintText,
           fontSize: 13,
         ),
       ),

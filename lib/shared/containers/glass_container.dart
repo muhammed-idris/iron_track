@@ -1,6 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 
+/// Reusable Glassmorphism Container widget with BackdropFilter blur.
 class GlassContainer extends StatelessWidget {
   final Widget? child;
   final double borderRadius;
@@ -29,7 +30,7 @@ class GlassContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ClipRRect(
+    final glassContent = ClipRRect(
       borderRadius: BorderRadius.circular(borderRadius),
       child: BackdropFilter(
         filter: ImageFilter.blur(sigmaX: blur, sigmaY: blur),
@@ -37,7 +38,6 @@ class GlassContainer extends StatelessWidget {
           width: width,
           height: height,
           padding: padding,
-          margin: margin,
           decoration: BoxDecoration(
             color: tint.withValues(alpha: 0.1),
             borderRadius: BorderRadius.circular(borderRadius),
@@ -50,5 +50,14 @@ class GlassContainer extends StatelessWidget {
         ),
       ),
     );
+
+    if (margin != null) {
+      return Padding(
+        padding: margin!,
+        child: glassContent,
+      );
+    }
+
+    return glassContent;
   }
 }

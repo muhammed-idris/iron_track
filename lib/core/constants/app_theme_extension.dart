@@ -104,7 +104,6 @@ class GlassTheme extends ThemeExtension<GlassTheme> {
       Color(0xFF353535),
       Color(0xFF292929),
       Color(0xFF191919),
-
     ],
     infoDivider: AppColor.primary,
     hintText: AppColor.grey,
@@ -232,20 +231,35 @@ class GlassTheme extends ThemeExtension<GlassTheme> {
     Color? selectedColor,
     Color? unSelectedColor,
     Color? indicatorColor,
+    Color? txtFieldColor,
+    String? upcomingText,
+    String? weekSelector,
+    List<Color>? borderColors,
+    Color? infoDivider,
+    Color? hintText,
+    List<Color>? exerciseBackground,
+    List<Color>? selectedDay,
+    List<Color>? unselectedDay,
+    Color? copyColor,
+    Color? shadowColor,
+    Color? buttonColor,
+    Color? redButton,
+    Color? appBarColor,
+    Color? levelContainer,
   }) {
     return GlassTheme(
-      txtFieldColor: txtFieldColor,
-      weekSelector: weekSelector,
-      levelContainer: levelContainer,
-      appBarColor: appBarColor,
-      redButton: redButton,
-      buttonColor: buttonColor,
-      upcomingText: upcomingText,
-      borderColors: borderColors,
-      shadowColor: shadowColor,
-      hintText: hintText,
-      unselectedDay: unselectedDay,
-      selectedDay: selectedDay,
+      txtFieldColor: txtFieldColor ?? this.txtFieldColor,
+      weekSelector: weekSelector ?? this.weekSelector,
+      levelContainer: levelContainer ?? this.levelContainer,
+      appBarColor: appBarColor ?? this.appBarColor,
+      redButton: redButton ?? this.redButton,
+      buttonColor: buttonColor ?? this.buttonColor,
+      upcomingText: upcomingText ?? this.upcomingText,
+      borderColors: borderColors ?? this.borderColors,
+      shadowColor: shadowColor ?? this.shadowColor,
+      hintText: hintText ?? this.hintText,
+      unselectedDay: unselectedDay ?? this.unselectedDay,
+      selectedDay: selectedDay ?? this.selectedDay,
       surfaceGradient: surfaceGradient ?? this.surfaceGradient,
       surfaceBorder: surfaceBorder ?? this.surfaceBorder,
       accentSurfaceGradient:
@@ -270,15 +284,83 @@ class GlassTheme extends ThemeExtension<GlassTheme> {
       selectedColor: selectedColor ?? this.selectedColor,
       unSelectedColor: unSelectedColor ?? this.unSelectedColor,
       indicatorColor: indicatorColor ?? this.indicatorColor,
-      copyColor: copyColor,
-      exerciseBackground: exerciseBackground,
-      infoDivider: infoDivider,
+      copyColor: copyColor ?? this.copyColor,
+      exerciseBackground: exerciseBackground ?? this.exerciseBackground,
+      infoDivider: infoDivider ?? this.infoDivider,
     );
   }
 
   @override
   GlassTheme lerp(ThemeExtension<GlassTheme>? other, double t) {
     if (other is! GlassTheme) return this;
-    return t < 0.5 ? this : other;
+    return GlassTheme(
+      txtFieldColor: Color.lerp(txtFieldColor, other.txtFieldColor, t)!,
+      levelContainer: Color.lerp(levelContainer, other.levelContainer, t)!,
+      appBarColor: Color.lerp(appBarColor, other.appBarColor, t)!,
+      redButton: Color.lerp(redButton, other.redButton, t)!,
+      buttonColor: Color.lerp(buttonColor, other.buttonColor, t)!,
+      upcomingText: t < 0.5 ? upcomingText : other.upcomingText,
+      weekSelector: t < 0.5 ? weekSelector : other.weekSelector,
+      borderColors: _lerpColorList(borderColors, other.borderColors, t),
+      infoDivider: Color.lerp(infoDivider, other.infoDivider, t)!,
+      hintText: Color.lerp(hintText, other.hintText, t)!,
+      rootBackColor: Color.lerp(rootBackColor, other.rootBackColor, t)!,
+      selectedColor: Color.lerp(selectedColor, other.selectedColor, t)!,
+      unSelectedColor: Color.lerp(unSelectedColor, other.unSelectedColor, t)!,
+      backGround: Color.lerp(backGround, other.backGround, t)!,
+      exerciseBackground:
+          _lerpColorList(exerciseBackground, other.exerciseBackground, t),
+      selectedDay: _lerpColorList(selectedDay, other.selectedDay, t),
+      unselectedDay: _lerpColorList(unselectedDay, other.unselectedDay, t),
+      surfaceGradient:
+          _lerpColorList(surfaceGradient, other.surfaceGradient, t),
+      surfaceBorder: Color.lerp(surfaceBorder, other.surfaceBorder, t)!,
+      accentSurfaceGradient: _lerpColorList(
+        accentSurfaceGradient,
+        other.accentSurfaceGradient,
+        t,
+      ),
+      accentSurfaceBorder:
+          Color.lerp(accentSurfaceBorder, other.accentSurfaceBorder, t)!,
+      badgeGradient: _lerpColorList(badgeGradient, other.badgeGradient, t),
+      softBadgeGradient:
+          _lerpColorList(softBadgeGradient, other.softBadgeGradient, t),
+      softBadgeBorderGradient: _lerpColorList(
+        softBadgeBorderGradient,
+        other.softBadgeBorderGradient,
+        t,
+      ),
+      upcomingCardGradient: _lerpColorList(
+        upcomingCardGradient,
+        other.upcomingCardGradient,
+        t,
+      ),
+      upcomingCardBorder:
+          Color.lerp(upcomingCardBorder, other.upcomingCardBorder, t)!,
+      dividerColor: Color.lerp(dividerColor, other.dividerColor, t)!,
+      mutedBorder: Color.lerp(mutedBorder, other.mutedBorder, t)!,
+      dialogBackground:
+          Color.lerp(dialogBackground, other.dialogBackground, t)!,
+      dangerIconBackground: _lerpColorList(
+        dangerIconBackground,
+        other.dangerIconBackground,
+        t,
+      ),
+      dangerIconColor: Color.lerp(dangerIconColor, other.dangerIconColor, t)!,
+      successColor: Color.lerp(successColor, other.successColor, t)!,
+      textPrimary: Color.lerp(textPrimary, other.textPrimary, t)!,
+      textMuted: Color.lerp(textMuted, other.textMuted, t)!,
+      indicatorColor: Color.lerp(indicatorColor, other.indicatorColor, t)!,
+      copyColor: Color.lerp(copyColor, other.copyColor, t)!,
+      shadowColor: Color.lerp(shadowColor, other.shadowColor, t)!,
+    );
+  }
+
+  static List<Color> _lerpColorList(List<Color> a, List<Color> b, double t) {
+    if (a.length != b.length) return t < 0.5 ? a : b;
+    return List.generate(
+      a.length,
+      (i) => Color.lerp(a[i], b[i], t)!,
+    );
   }
 }

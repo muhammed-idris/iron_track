@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// Reusable Gradient Container for styled cards and background surfaces.
 class GradientContainer extends StatelessWidget {
   final Widget? child;
   final List<Color> colors;
@@ -14,7 +15,6 @@ class GradientContainer extends StatelessWidget {
   final AlignmentGeometry? end;
   final List<BoxShadow>? shadow;
 
-
   const GradientContainer({
     super.key,
     this.child,
@@ -23,11 +23,12 @@ class GradientContainer extends StatelessWidget {
     this.width,
     this.height,
     this.padding = const EdgeInsets.all(20),
-     this.margin = const EdgeInsets.all(20),
+    this.margin = const EdgeInsets.all(20),
     this.blur,
     this.borderSideColor,
     this.begin,
-    this.end, this.shadow,
+    this.end,
+    this.shadow,
   });
 
   @override
@@ -40,7 +41,7 @@ class GradientContainer extends StatelessWidget {
       decoration: BoxDecoration(
         boxShadow: shadow,
         border: Border.all(
-          color:  borderSideColor ?? Colors.transparent,
+          color: borderSideColor ?? Colors.transparent,
           width: 1.1,
         ),
         gradient: LinearGradient(

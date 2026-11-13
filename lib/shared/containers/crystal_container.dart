@@ -2,6 +2,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:gradient_borders/box_borders/gradient_box_border.dart';
 
+/// Customizable Glassmorphism Card supporting gradient borders, backdrop blur, and custom shadows.
 class CustomGlassCard extends StatelessWidget {
   const CustomGlassCard({
     super.key,
@@ -54,7 +55,6 @@ class CustomGlassCard extends StatelessWidget {
 
     final radius = BorderRadius.circular(borderRadius);
 
-
     final resolvedBorderGradient = borderGradient ??
         LinearGradient(
           colors: borderColors ?? [borderColor, borderColor],
@@ -91,9 +91,9 @@ class CustomGlassCard extends StatelessWidget {
         borderRadius: radius,
         child: blur > 0
             ? BackdropFilter(
-          filter: ImageFilter.blur(sigmaX: blur, sigmaY: blur),
-          child: cardContent,
-        )
+                filter: ImageFilter.blur(sigmaX: blur, sigmaY: blur),
+                child: cardContent,
+              )
             : cardContent,
       ),
     );

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:iron_track/core/theme/theme_context.dart';
 
+/// Reusable Custom Text widget with automatic word truncation support and glass theme fallback.
 class CustomText extends StatelessWidget {
   const CustomText({
     super.key,
@@ -27,11 +29,13 @@ class CustomText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final resolvedColor = color ?? context.glass.textPrimary;
+
     return Text(
       firstThreeWords ? _getFirstThreeWords(text) : text,
       textScaler: const TextScaler.linear(1.0),
       style: GoogleFonts.plusJakartaSans(
-        color: color,
+        color: resolvedColor,
         fontSize: size,
         fontWeight: weight,
       ),

@@ -3,10 +3,16 @@ import 'package:iron_track/core/constants/colors_manager.dart';
 import 'package:iron_track/core/theme/theme_context.dart';
 import 'package:iron_track/shared/containers/crystal_container.dart';
 
+/// Centralized custom app bar used across top-level screens in Iron Track.
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
+  final String? subtitle;
 
-  const CustomAppBar({super.key, required this.title});
+  const CustomAppBar({
+    super.key,
+    required this.title,
+    this.subtitle = 'Track. Compete. Dominate.',
+  });
 
   @override
   Size get preferredSize => const Size.fromHeight(80);
@@ -29,10 +35,11 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(title, style: context.text.appBar),
-              Text(
-                'Track. Compete. Dominate.',
-                style: context.text.subtitle,
-              ),
+              if (subtitle != null)
+                Text(
+                  subtitle!,
+                  style: context.text.subtitle,
+                ),
             ],
           ),
           const Spacer(),

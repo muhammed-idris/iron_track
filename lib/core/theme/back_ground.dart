@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:iron_track/core/theme/theme_context.dart';
 
+/// Animated background wrapper that smoothly transitions theme background colors across light and dark modes.
 class CustomGlassBackground extends StatelessWidget {
   final Widget child;
 
@@ -15,14 +16,13 @@ class CustomGlassBackground extends StatelessWidget {
 
     return Stack(
       children: [
-        // Background
         Positioned.fill(
-          child: Container(
+          child: AnimatedContainer(
+            duration: const Duration(milliseconds: 300),
+            curve: Curves.easeInOut,
             color: glass.backGround,
           ),
         ),
-
-        // Page content
         Positioned.fill(child: child),
       ],
     );

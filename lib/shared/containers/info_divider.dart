@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:iron_track/core/theme/theme_context.dart';
 
+/// Reusable Divider line container with rounded corners and context glass theme styling.
 class InfoDivider extends StatelessWidget {
   final double? width;
   final double? height;

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../containers/gradient_container.dart';
 
+/// Animated custom button supporting gradient backgrounds, haptic feedback, press scale, and entrance animation.
 class CustomBtn extends StatefulWidget {
   const CustomBtn({
     super.key,
@@ -54,8 +56,6 @@ class _CustomBtnState extends State<CustomBtn> {
     setState(() => _pressed = true);
   }
 
-  // Keeps the pressed state visible long enough on very quick taps,
-  // so the animation is always noticeable.
   Future<void> _release() async {
     if (!_pressed) return;
     final elapsed = DateTime.now().difference(_pressStart ?? DateTime.now());
@@ -70,7 +70,7 @@ class _CustomBtnState extends State<CustomBtn> {
     final colors = widget.btnColors ??
         const [Colors.transparent, Colors.transparent, Colors.transparent];
     final glowColor =
-    colors.first == Colors.transparent ? Colors.black : colors.first;
+        colors.first == Colors.transparent ? Colors.black : colors.first;
     final contentColor = widget.textColor ?? Colors.white;
 
     Widget button = GestureDetector(
@@ -121,7 +121,7 @@ class _CustomBtnState extends State<CustomBtn> {
                     if (widget.text != null)
                       Text(
                         widget.text!,
-                        style: TextStyle(
+                        style: GoogleFonts.plusJakartaSans(
                           color: contentColor,
                           fontSize: 18,
                           fontWeight: FontWeight.w600,
@@ -131,8 +131,6 @@ class _CustomBtnState extends State<CustomBtn> {
                   ],
                 ),
               ),
-
-              // Soft darkening overlay while pressed
               Positioned.fill(
                 child: IgnorePointer(
                   child: ClipRRect(
@@ -153,14 +151,12 @@ class _CustomBtnState extends State<CustomBtn> {
       ),
     );
 
-    // Disabled look
     button = AnimatedOpacity(
       duration: const Duration(milliseconds: 200),
       opacity: _enabled ? 1 : 0.5,
       child: button,
     );
 
-    // Optional entrance animation
     if (widget.animateIn) {
       button = TweenAnimationBuilder<double>(
         tween: Tween(begin: 0, end: 1),
