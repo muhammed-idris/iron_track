@@ -1,13 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:iron_track/core/constants/app_theme_extension.dart';
 import 'package:iron_track/core/theme/theme_context.dart';
 import 'package:iron_track/features/home/data/exercise_model.dart';
-import 'package:iron_track/shared/containers/crystal_container.dart';
-import 'package:iron_track/shared/containers/info_divider.dart';
 import 'package:iron_track/shared/customs/custom_btn.dart';
-
 import '../../../core/constants/colors_manager.dart';
 import '../../../shared/customs/custom_snack_bar.dart';
 import '../../home/widgets/delete_widget.dart';
@@ -15,8 +11,8 @@ import '../../log/widgets/workout_refresh_notifier.dart';
 import '../data/set_model.dart';
 import '../logic/set_helper.dart';
 import '../widget/add_set_dialog.dart';
-import '../widget/edit_set_container.dart';
-import '../widget/exercise_set_card.dart';
+import '../widget/edit_list_widget.dart';
+import '../widget/edit_screen_header.dart';
 import '../widget/workout_app_bar.dart';
 
 class EditExerciseScreen extends StatefulWidget {
@@ -69,7 +65,7 @@ class _EditExerciseScreenState extends State<EditExerciseScreen> {
     final exerciseId = exercise.id ?? -1;
     return List.generate(
       count,
-      (i) => SetEntry(
+          (i) => SetEntry(
         exerciseId: exerciseId,
         setIndex: i,
         reps: exercise.reps ?? 0,
@@ -81,7 +77,7 @@ class _EditExerciseScreenState extends State<EditExerciseScreen> {
   List<SetEntry> _reindexSets(List<SetEntry> entries) {
     return List.generate(
       entries.length,
-      (i) => entries[i].copyWith(setIndex: i),
+          (i) => entries[i].copyWith(setIndex: i),
     );
   }
 
@@ -125,9 +121,9 @@ class _EditExerciseScreenState extends State<EditExerciseScreen> {
 
       final hasChanged =
           updated.exerciseTitle != widget.exercise.exerciseTitle ||
-          updated.setsCount != widget.exercise.setsCount ||
-          updated.reps != widget.exercise.reps ||
-          updated.weight != widget.exercise.weight;
+              updated.setsCount != widget.exercise.setsCount ||
+              updated.reps != widget.exercise.reps ||
+              updated.weight != widget.exercise.weight;
 
       if (hasChanged) {
         await widget.onUpdate!(updated);
@@ -249,62 +245,53 @@ class _EditExerciseScreenState extends State<EditExerciseScreen> {
     final height = size.height;
     final glass = context.glass;
 
+    final header = ExerciseTitleHeader(
+      title: _exerciseNameController.text.trim(),
+      glass: glass,
+      setsCount: _setEntries.length,
+      totalVolume: _setEntries.fold<double>(
+        0,
+            (sum, e) => sum + e.reps * e.weight,
+      ),
+    );
+
     return PopScope(
       onPopInvokedWithResult: (didPop, _) {
         if (didPop) {
           _persistChanges();
         }
       },
-      child: SafeArea(
-        top: true,
-        child: Scaffold(
-          appBar: const WorkoutAppBar(
-            appBarTitle: 'Edit Workout Screen',
-          ),
-          body: Padding(
-            padding: EdgeInsets.only(
-              left: width * 0.04,
-              right: width * 0.04,
-              top: height * 0.02,
-              bottom: height * 0.04,
+      child: Scaffold(
+        body: Column(
+          children: [
+            header,
+            Expanded(
+              child: _loadingSetEntries
+                  ? const Center(
+                child: CupertinoActivityIndicator(
+                  color: AppColor.primary,
+                  radius: 15,
+                ),
+              )
+                  : ExerciseSetList(
+                entries: _setEntries,
+                expandedIndex: _expandedIndex,
+                width: width,
+                height: height,
+                glass: glass,
+                onSelectSet: _toggleExpand,
+                onSaveSet: _updateSet,
+                onDeleteSet: _deleteSet,
+              ),
             ),
-            child: Column(
-              children: [
-                _ExerciseTitleHeader(
-                  title: _exerciseNameController.text.trim(),
-                  width: width,
-                  height: height,
-                  glass: glass,
-                ),
-                Gap(height * 0.02),
-                _SetTableColumnsHeader(
-                  width: width,
-                  glass: glass,
-                ),
-                Gap(height * 0.01),
-                Expanded(
-                  child: _loadingSetEntries
-                      ? const Center(
-                          child: CupertinoActivityIndicator(
-                            color: AppColor.primary,
-                            radius: 15,
-                          ),
-                        )
-                      : _ExerciseSetList(
-                          entries: _setEntries,
-                          expandedIndex: _expandedIndex,
-                          width: width,
-                          height: height,
-                          glass: glass,
-                          onSelectSet: _toggleExpand,
-                          onSaveSet: _updateSet,
-                          onDeleteSet: _deleteSet,
-                        ),
-                ),
-                Gap(height * 0.015),
-                CustomBtn(
+            SafeArea(
+              top: false,
+              child: Padding(
+                padding: EdgeInsets.only(top: height * 0.01, bottom: 8),
+                child: CustomBtn(
                   borderRadius: 25,
                   height: height * 0.06,
+                  width: width * 0.85,
                   text: 'Add Set',
                   icon: Icons.add_circle,
                   btnColors: [
@@ -314,185 +301,11 @@ class _EditExerciseScreenState extends State<EditExerciseScreen> {
                   animateIn: true,
                   onTap: _addSet,
                 ),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class _ExerciseTitleHeader extends StatelessWidget {
-  const _ExerciseTitleHeader({
-    required this.title,
-    required this.width,
-    required this.height,
-    required this.glass,
-  });
-
-  final String title;
-  final double width;
-  final double height;
-  final GlassTheme glass;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Row(
-          children: [
-            Text(
-              '|',
-              style: context.text.appBarTitle.copyWith(
-                color: glass.textMuted,
-              ),
-            ),
-            Expanded(
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: width * 0.02),
-                child: SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Text(
-                    title,
-                    style: context.text.appBarTitle.copyWith(
-                      color: glass.textPrimary,
-                    ),
-                  ),
-                ),
               ),
             ),
           ],
         ),
-        Gap(height * 0.01),
-        InfoDivider(
-          width: width,
-          height: height * 0.005,
-          color: glass.textMuted,
-          margin: width * 0.02,
-          topLeft: 20,
-          topRight: 20,
-          bottomLeft: 20,
-          bottomRight: 20,
-        ),
-      ],
-    );
-  }
-}
-
-class _SetTableColumnsHeader extends StatelessWidget {
-  const _SetTableColumnsHeader({
-    required this.width,
-    required this.glass,
-  });
-
-  final double width;
-  final GlassTheme glass;
-
-  @override
-  Widget build(BuildContext context) {
-    final labelStyle = context.text.headline2.copyWith(color: glass.copyColor);
-    final dividerStyle = context.text.appBar.copyWith(color: glass.mutedBorder);
-
-    return Row(
-      children: [
-        Gap(width * 0.02),
-        SizedBox(
-          width: width * 0.15,
-          child: Text('Type', style: labelStyle),
-        ),
-        Text('|', style: dividerStyle),
-        Gap(width * 0.03),
-        SizedBox(
-          width: width * 0.14,
-          child: Text('Reps', style: labelStyle),
-        ),
-        Text('|', style: dividerStyle),
-        Gap(width * 0.02),
-        Text('Weight', style: labelStyle),
-        const Spacer(),
-        CustomGlassCard(
-          borderRadius: 10,
-          width: width * 0.2,
-          margin: EdgeInsets.zero,
-          padding: const EdgeInsets.all(5),
-          gradient: LinearGradient(colors: glass.softBadgeGradient),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(
-                Icons.arrow_back_rounded,
-                color: glass.textPrimary,
-                size: 15,
-              ),
-              Gap(width * 0.01),
-              Text(
-                'Delete',
-                style: context.text.subtitle.copyWith(
-                  color: glass.textPrimary,
-                ),
-              ),
-            ],
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-class _ExerciseSetList extends StatelessWidget {
-  const _ExerciseSetList({
-    required this.entries,
-    required this.expandedIndex,
-    required this.width,
-    required this.height,
-    required this.glass,
-    required this.onSelectSet,
-    required this.onSaveSet,
-    required this.onDeleteSet,
-  });
-
-  final List<SetEntry> entries;
-  final int? expandedIndex;
-  final double width;
-  final double height;
-  final GlassTheme glass;
-  final ValueChanged<int> onSelectSet;
-  final void Function(int index, int reps, double weight) onSaveSet;
-  final ValueChanged<int> onDeleteSet;
-
-  @override
-  Widget build(BuildContext context) {
-    return ListView.builder(
-      physics: const BouncingScrollPhysics(),
-      itemCount: entries.length,
-      itemBuilder: (context, index) {
-        final entry = entries[index];
-        final isExpanded = expandedIndex == index;
-
-        return Padding(
-          key: ObjectKey(entry),
-          padding: const EdgeInsets.symmetric(vertical: 7),
-          child: GestureDetector(
-            onTap: () => onSelectSet(index),
-            child: isExpanded
-                ? EditSetContainer(
-                    reps: entry.reps,
-                    weight: entry.weight,
-                    onDone: (reps, weight) => onSaveSet(index, reps, weight),
-                  )
-                : ExerciseSetCard(
-                    index: index,
-                    reps: entry.reps,
-                    weight: entry.weight,
-                    width: width,
-                    height: height,
-                    glass: glass,
-                    onDelete: () => onDeleteSet(index),
-                  ),
-          ),
-        );
-      },
+      ),
     );
   }
 }

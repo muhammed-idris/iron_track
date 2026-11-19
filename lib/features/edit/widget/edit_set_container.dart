@@ -7,6 +7,7 @@ import 'package:iron_track/shared/containers/crystal_container.dart';
 import 'package:iron_track/shared/customs/custom_btn.dart';
 import '../../../core/constants/colors_manager.dart';
 import 'container_count.dart';
+import 'exercise_set_card.dart';
 
 class EditSetContainer extends StatefulWidget {
   const EditSetContainer({
@@ -109,7 +110,7 @@ class EditSetContainerState extends State<EditSetContainer> {
           Gap(size.height * 0.01),
           _FieldLabel(text: 'Weight', color: labelColor),
           CounterCard(
-            value: _weight.toString(),
+            value: ExerciseSetCard.formatWeight(_weight),
             onMinus: _decrementWeight,
             onPlus: _incrementWeight,
           ),

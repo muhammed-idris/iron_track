@@ -2,13 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gap/gap.dart';
-import 'package:iron_track/core/constants/colors_manager.dart';
 import 'package:iron_track/core/theme/theme_context.dart';
 import 'package:iron_track/features/home/widgets/start_workout_btn.dart';
 import 'package:iron_track/shared/containers/crystal_container.dart';
 import 'package:iron_track/shared/containers/info_divider.dart';
-
-import '../../log/views/log_view.dart';
 import '../data/workout_model.dart';
 
 class WorkoutCard extends StatefulWidget {
@@ -37,12 +34,8 @@ class _WorkoutCardState extends State<WorkoutCard> {
     final size = MediaQuery.sizeOf(context);
     final width = size.width;
     final height = size.height;
-
     final glass = context.glass;
-    final colorScheme = Theme.of(context).colorScheme;
-
-    final totalTime = widget.workout.exercises.fold<int>(
-      0,
+    final totalTime = widget.workout.exercises.fold<int>(0,
       (sum, exercise) => sum + ((exercise.setsCount ?? 0) * 4),
     );
 

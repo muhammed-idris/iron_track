@@ -27,6 +27,9 @@ class ExerciseSetCard extends StatelessWidget {
   final double? height;
   final GlassTheme? glass;
 
+  static String formatWeight(double w) =>
+      w == w.roundToDouble() ? w.toInt().toString() : w.toString();
+
   @override
   Widget build(BuildContext context) {
     final resolvedWidth = width ?? MediaQuery.sizeOf(context).width;
@@ -42,7 +45,7 @@ class ExerciseSetCard extends StatelessWidget {
       key: ValueKey('set_slidable_$index'),
       endActionPane: ActionPane(
         motion: const BehindMotion(),
-        extentRatio: 1,
+        extentRatio: 0.25,
         children: [
           SlidableAction(
             flex: 1,
@@ -50,8 +53,8 @@ class ExerciseSetCard extends StatelessWidget {
             backgroundColor: AppColor.danger,
             foregroundColor: Colors.white,
             icon: Icons.delete,
-            label: 'Press To Delete',
-            borderRadius: BorderRadius.circular(20),
+            label: 'Delete',
+            borderRadius: BorderRadius.circular(12),
           ),
         ],
       ),
@@ -67,11 +70,8 @@ class ExerciseSetCard extends StatelessWidget {
         margin: EdgeInsets.zero,
         borderRadius: 20,
         borderColors: resolvedGlass.borderColors,
-        gradient: LinearGradient(
-          colors: resolvedGlass.exerciseBackground,
-        ),
+        gradient: LinearGradient(colors: resolvedGlass.exerciseBackground),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             GradientContainer(
@@ -88,22 +88,32 @@ class ExerciseSetCard extends StatelessWidget {
                 ),
               ),
             ),
-            Gap(resolvedWidth * 0.05),
+            Gap(resolvedWidth * 0.04),
             Text('|', style: dividerStyle),
-            Gap(resolvedWidth * 0.02),
-            _ScrollableMetricCell(
-              width: resolvedWidth * 0.14,
-              value: reps.toString(),
-              style: valueStyle,
+            Expanded(
+              child: _MetricCell(
+                value: reps.toString(),
+                label: 'Reps',
+                style: valueStyle,
+                labelColor: resolvedGlass.textMuted,
+              ),
             ),
-            Gap(resolvedWidth * 0.02),
             Text('|', style: dividerStyle),
-            Gap(resolvedWidth * 0.03),
-            _ScrollableMetricCell(
-              width: resolvedWidth * 0.27,
-              value: weight.toString(),
-              style: valueStyle,
+            Expanded(
+              flex: 2,
+              child: _MetricCell(
+                value: formatWeight(weight),
+                label: 'Weight',
+                style: valueStyle,
+                labelColor: resolvedGlass.textMuted,
+              ),
             ),
+            Icon(
+              Icons.edit_rounded,
+              size: 16,
+              color: resolvedGlass.textMuted,
+            ),
+            const Gap(4),
           ],
         ),
       ),
@@ -111,26 +121,35 @@ class ExerciseSetCard extends StatelessWidget {
   }
 }
 
-class _ScrollableMetricCell extends StatelessWidget {
-  const _ScrollableMetricCell({
-    required this.width,
+class _MetricCell extends StatelessWidget {
+  const _MetricCell({
     required this.value,
+    required this.label,
     required this.style,
+    required this.labelColor,
   });
 
-  final double width;
   final String value;
+  final String label;
   final TextStyle style;
+  final Color labelColor;
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: width,
-      child: SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
-        child: Center(
-          child: Text(value, style: style),
-        ),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 8),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          FittedBox(
+            fit: BoxFit.scaleDown,
+            child: Text(value, maxLines: 1, style: style),
+          ),
+          Text(
+            label,
+            style: TextStyle(color: labelColor, fontSize: 10),
+          ),
+        ],
       ),
     );
   }

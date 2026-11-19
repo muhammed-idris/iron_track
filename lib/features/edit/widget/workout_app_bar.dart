@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:iron_track/core/theme/theme_context.dart';
+import '../../../core/constants/colors_manager.dart';
 import '../../../shared/containers/crystal_container.dart';
 
 class WorkoutAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -31,14 +32,12 @@ class WorkoutAppBar extends StatelessWidget implements PreferredSizeWidget {
             padding: EdgeInsets.zero,
             height: height * 0.1,
             borderRadius: 15,
-            gradient: LinearGradient(
-              colors: glass.surfaceGradient,
-            ),
-            borderColors: glass.borderColors,
+            backgroundColor: GlassColors.glassDark1,
             child: Center(
               child: Icon(
-                Icons.arrow_back,
+                Icons.arrow_back_ios_new_rounded,
                 color: glass.copyColor,
+                size: 17,
               ),
             ),
           ),

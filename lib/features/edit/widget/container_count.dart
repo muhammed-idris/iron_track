@@ -52,15 +52,14 @@ class CounterCard extends StatelessWidget {
             onPressed: onMinus,
           ),
           const Gap(10),
-          Center(
-            child: Expanded(
-              child: SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Center(
-                  child: Text(
-                    value ?? '',
-                    style: context.text.appBar.copyWith(color: glass.textPrimary),
-                  ),
+          Expanded(
+            child: Center(
+              child: FittedBox(
+                fit: BoxFit.scaleDown,
+                child: Text(
+                  value ?? '',
+                  maxLines: 1,
+                  style: context.text.appBar.copyWith(color: glass.textPrimary),
                 ),
               ),
             ),

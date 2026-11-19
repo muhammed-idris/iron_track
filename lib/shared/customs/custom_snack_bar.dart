@@ -282,7 +282,7 @@ class _SnackBarOverlayState extends State<_SnackBarOverlay>
                             Text(
                               widget.typeMessage,
                               style: context.text.headline2.copyWith(
-                                color: widget.textColor,
+                                color: glass.textPrimary,
                                 fontWeight: FontWeight.w600,
                               ),
                             ),

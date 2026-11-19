@@ -4,6 +4,7 @@ import 'package:iron_track/core/constants/colors_manager.dart';
 import 'package:iron_track/core/theme/theme_context.dart';
 import 'package:iron_track/features/home/widgets/levels_widget.dart';
 import 'package:iron_track/shared/containers/crystal_container.dart';
+import 'package:iron_track/shared/customs/custom_app_bar.dart';
 import '../../edit/widget/workout_app_bar.dart';
 
 class LevelsView extends StatelessWidget {
@@ -19,7 +20,7 @@ class LevelsView extends StatelessWidget {
     final glass = context.glass;
 
     return Scaffold(
-      appBar: const WorkoutAppBar(appBarTitle: 'All Levels'),
+      appBar: const CustomAppBar(appBarTitle: 'All Levels'),
       body: ListView.builder(
         physics: const BouncingScrollPhysics(),
         padding: EdgeInsets.symmetric(
