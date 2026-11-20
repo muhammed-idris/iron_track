@@ -1,15 +1,18 @@
 import 'package:material_ui/material_ui.dart';
-import 'package:gap/gap.dart';
-import 'package:iron_track/core/theme/theme_context.dart';
-import 'package:iron_track/features/auth/view/sign_up_view.dart';
-import 'package:iron_track/features/auth/widgets/top_icon_widget.dart';
-import 'package:iron_track/shared/containers/crystal_container.dart';
-import '../../../core/constants/colors_manager.dart';
-import '../../../root/root_screen.dart';
-import '../../../shared/customs/custom_btn.dart';
+import 'package:iron_track/core/constants/colors_manager.dart';
+import 'package:iron_track/root/root_screen.dart';
+import '../logic/auth_routes.dart';
+import '../logic/auth_validators.dart';
+import '../widgets/auth_card.dart';
+import '../widgets/auth_checkbox.dart';
+import '../widgets/auth_links.dart';
+import '../widgets/auth_primary_button.dart';
+import '../widgets/auth_scaffold.dart';
 import '../widgets/auth_text_from_field.dart';
-import '../widgets/remember_me.dart';
+import '../widgets/social_auth_section.dart';
+import '../widgets/top_icon_widget.dart';
 import 'forget_password_view.dart';
+import 'sign_up_view.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -22,7 +25,7 @@ class _LoginViewState extends State<LoginView> {
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
-  bool isRememberMe = false;
+  bool _rememberMe = false;
 
   @override
   void dispose() {
@@ -36,216 +39,95 @@ class _LoginViewState extends State<LoginView> {
     if (_formKey.currentState?.validate() ?? false) {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(
-          builder: (_) => const RootScreen(),
-        ),
+        authFadeRoute(const RootScreen()),
       );
     }
   }
 
+  void _handleGuestLogin() {
+    FocusScope.of(context).unfocus();
+    Navigator.pushReplacement(
+      context,
+      authFadeRoute(const RootScreen()),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    final glass = context.glass;
-    final size = MediaQuery.sizeOf(context);
-    final width = size.width;
-    final height = size.height;
+    return AuthScaffold(
+      children: [
+        const TopIconWidget(),
 
-    return SafeArea(
-      child: GestureDetector(
-        onTap: () => FocusScope.of(context).unfocus(),
-        child: Scaffold(
-          body: Padding(
-            padding: EdgeInsets.symmetric(horizontal: width * 0.05),
-            child: SingleChildScrollView(
-              physics: const BouncingScrollPhysics(),
-              child: Form(
-                key: _formKey,
-                child: Column(
-                  children: [
-                    Gap(height * 0.045),
-                    const TopIconWidget(),
-                    CustomGlassCard(
-                      borderColors: glass.borderColors,
-                      shadow: [
-                        BoxShadow(
-                          color: glass.shadowColor,
-                          blurRadius: 12,
-                          offset: const Offset(0, 7),
-                        ),
-                      ],
-                      blur: 0,
-                      margin: EdgeInsets.only(top: height * 0.035),
-                      width: width * 0.9,
-                      borderRadius: 25,
-                      padding: EdgeInsets.symmetric(
-                        horizontal: width * 0.05,
-                        vertical: height * 0.025,
-                      ),
-                      gradient: LinearGradient(
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
-                        colors: glass.exerciseBackground,
-                      ),
-                      child: Column(
-                        children: [
-                          Text(
-                            'Login',
-                            style: context.text.appBar.copyWith(
-                              color: glass.textMuted,
-                            ),
-                          ),
-                          AuthTextField(
-                            controller: _emailController,
-                            label: 'Email',
-                            icon: Icons.email_rounded,
-                            hintText: 'you@gmail.com',
-                            keyboardType: TextInputType.emailAddress,
-                            autofillHints: const [AutofillHints.email],
-                            validator: (v) =>
-                                (v == null || !v.trim().contains('@'))
-                                    ? 'Enter a valid email'
-                                    : null,
-                          ),
-                          Gap(height * 0.02),
-                          AuthTextField(
-                            controller: _passwordController,
-                            label: 'Password',
-                            icon: Icons.lock_rounded,
-                            hintText: '••••••••',
-                            obscureText: true,
-                            autofillHints: const [AutofillHints.password],
-                            validator: (v) => (v == null || v.length < 8)
-                                ? 'Min 8 characters'
-                                : null,
-                          ),
-                          Gap(height * 0.01),
-                          Row(
-                            children: [
-                              TextButton.icon(
-                                onPressed: () {
-                                  setState(() {
-                                    isRememberMe = !isRememberMe;
-                                  });
-                                },
-                                icon: Icon(
-                                  isRememberMe
-                                      ? Icons.check_box_rounded
-                                      : Icons.check_box_outline_blank_rounded,
-                                  color: isRememberMe
-                                      ? AppColor.primary
-                                      : glass.hintText,
-                                ),
-                                label: Text(
-                                  'Remember Me',
-                                  style: context.text.buttonSmall.copyWith(
-                                    color: glass.hintText,
-                                  ),
-                                ),
-                              ),
-                              const Spacer(),
-                              TextButton(
-                                onPressed: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (_) =>
-                                          const ForgetPasswordView(),
-                                    ),
-                                  );
-                                },
-                                style: TextButton.styleFrom(
-                                  splashFactory: NoSplash.splashFactory,
-                                  overlayColor: Colors.transparent,
-                                ),
-                                child: Text(
-                                  'Forgot Password?',
-                                  style: context.text.bodySmall.copyWith(
-                                    color: glass.textMuted,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                          Gap(height * 0.01),
-                          CustomBtn(
-                            text: 'Login',
-                            btnColors: [
-                              AppColor.primary,
-                              AppColor.primary.withValues(alpha: 0.8),
-                            ],
-                            animateIn: true,
-                            onTap: _handleLogin,
-                          ),
-                          Gap(height * 0.03),
-                          const OrDivider(label: 'or continue with'),
-                          Gap(height * 0.025),
-                          const ContinueWithButton(),
-                          Gap(height * 0.01),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                "Don't have an account?",
-                                style: context.text.bodySmall.copyWith(
-                                  color: glass.hintText,
-                                ),
-                              ),
-                              TextButton(
-                                onPressed: () {
-                                  Navigator.pushReplacement(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (_) => const SignUpView(),
-                                    ),
-                                  );
-                                },
-                                style: TextButton.styleFrom(
-                                  splashFactory: NoSplash.splashFactory,
-                                  overlayColor: Colors.transparent,
-                                ),
-                                child: Text(
-                                  'Sign Up',
-                                  style: context.text.bodySmall.copyWith(
-                                    color: AppColor.primary,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                          Gap(height * 0.01),
-                          TextButton(
-                            onPressed: () {
-                              Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (_) => const RootScreen(),
-                                ),
-                              );
-                            },
-                            style: TextButton.styleFrom(
-                              splashFactory: NoSplash.splashFactory,
-                              overlayColor: Colors.transparent,
-                            ),
-                            child: Text(
-                              'Guest ?',
-                              style: context.text.headline1.copyWith(
-                                color: AppColor.primary,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
+        Form(
+          key: _formKey,
+          child: AuthCard(
+            title: 'Login',
+            subtitle: 'Welcome back! Enter your details below.',
+            children: [
+              AuthTextField(
+                controller: _emailController,
+                label: 'Email',
+                icon: Icons.email_rounded,
+                hintText: 'you@example.com',
+                keyboardType: TextInputType.emailAddress,
+                autofillHints: const [AutofillHints.email],
+                validator: AuthValidators.email,
+              ),
+              AuthTextField(
+                controller: _passwordController,
+                label: 'Password',
+                icon: Icons.lock_rounded,
+                hintText: '••••••••',
+                obscureText: true,
+                autofillHints: const [AutofillHints.password],
+                validator: AuthValidators.password,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  AuthCheckbox(
+                    value: _rememberMe,
+                    onChanged: (val) => setState(() => _rememberMe = val),
+                    label: 'Remember Me',
+                  ),
+                  AuthTextLink(
+                    text: 'Forgot Password?',
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        authFadeRoute(const ForgetPasswordView()),
+                      );
+                    },
+                  ),
+                ],
+              ),
+              AuthPrimaryButton(
+                text: 'Login',
+                onTap: _handleLogin,
+              ),
+              const OrDivider(label: 'Or continue with'),
+              const ContinueWithButton(),
+              AuthFooterLink(
+                prompt: "Don't have an account?",
+                action: 'Sign Up',
+                onTap: () {
+                  Navigator.pushReplacement(
+                    context,
+                    authFadeRoute(const SignUpView()),
+                  );
+                },
+              ),
+              Center(
+                child: AuthTextLink(
+                  text: 'Continue as Guest',
+                  color: AppColor.primary,
+                  onTap: _handleGuestLogin,
                 ),
               ),
-            ),
+            ],
           ),
         ),
-      ),
+      ],
     );
   }
 }

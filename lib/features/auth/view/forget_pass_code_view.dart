@@ -1,10 +1,10 @@
 import 'package:material_ui/material_ui.dart';
-import 'package:gap/gap.dart';
-import 'package:iron_track/core/theme/theme_context.dart';
-import 'package:iron_track/shared/containers/crystal_container.dart';
-import '../../../core/constants/colors_manager.dart';
-import '../../../shared/customs/custom_btn.dart';
-import '../../../shared/customs/custom_snack_bar.dart';
+import 'package:iron_track/shared/customs/custom_snack_bar.dart';
+import '../logic/auth_routes.dart';
+import '../widgets/auth_card.dart';
+import '../widgets/auth_primary_button.dart';
+import '../widgets/auth_scaffold.dart';
+import '../widgets/otp_input.dart';
 import '../widgets/top_icon_widget.dart';
 import 'confirm_pass_view.dart';
 
@@ -16,39 +16,19 @@ class ForgetPassCodeView extends StatefulWidget {
 }
 
 class _ForgetPassCodeViewState extends State<ForgetPassCodeView> {
-  static const int _codeLength = 5;
-  late final List<TextEditingController> _controllers;
-  late final List<FocusNode> _focusNodes;
-
-  @override
-  void initState() {
-    super.initState();
-    _controllers = List.generate(_codeLength, (_) => TextEditingController());
-    _focusNodes = List.generate(_codeLength, (_) => FocusNode());
-  }
+  final _otpController = TextEditingController();
+  bool _hasError = false;
 
   @override
   void dispose() {
-    for (final c in _controllers) {
-      c.dispose();
-    }
-    for (final f in _focusNodes) {
-      f.dispose();
-    }
+    _otpController.dispose();
     super.dispose();
   }
 
-  void _onDigitChanged(int index, String value) {
-    if (value.isNotEmpty && index < _codeLength - 1) {
-      _focusNodes[index + 1].requestFocus();
-    } else if (value.isEmpty && index > 0) {
-      _focusNodes[index - 1].requestFocus();
-    }
-  }
-
   void _handleConfirm() {
-    final code = _controllers.map((c) => c.text.trim()).join();
-    if (code.length < _codeLength) {
+    final code = _otpController.text.trim();
+    if (code.length < 5) {
+      setState(() => _hasError = true);
       AppSnackBar.error(
         context: context,
         message: 'Please enter the 5-digit verification code',
@@ -56,155 +36,37 @@ class _ForgetPassCodeViewState extends State<ForgetPassCodeView> {
       return;
     }
 
+    setState(() => _hasError = false);
     Navigator.push(
       context,
-      MaterialPageRoute(
-        builder: (_) => const ConfirmPassView(),
-      ),
+      authFadeRoute(const ConfirmPassView()),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    final glass = context.glass;
-    final size = MediaQuery.sizeOf(context);
-    final width = size.width;
-    final height = size.height;
-
-    return SafeArea(
-      child: GestureDetector(
-        onTap: () => FocusScope.of(context).unfocus(),
-        child: Scaffold(
-          appBar: AppBar(
-            toolbarHeight: height * 0.04,
-            backgroundColor: Colors.transparent,
-            elevation: 0,
-            leading: IconButton(
-              onPressed: () => Navigator.pop(context),
-              icon: Icon(
-                Icons.arrow_back_ios_new_rounded,
-                color: glass.hintText,
-              ),
+    return AuthScaffold(
+      showBack: true,
+      children: [
+        const TopIconWidget(),
+        AuthCard(
+          title: 'Verify Code',
+          subtitle: 'Enter the 5-digit code sent to your email.',
+          children: [
+            OtpInput(
+              controller: _otpController,
+              length: 5,
+              hasError: _hasError,
+              autofocus: true,
+              onCompleted: (_) => _handleConfirm(),
             ),
-          ),
-          body: Padding(
-            padding: EdgeInsets.symmetric(horizontal: width * 0.05),
-            child: SingleChildScrollView(
-              physics: const BouncingScrollPhysics(),
-              child: Column(
-                children: [
-                  const TopIconWidget(),
-                  CustomGlassCard(
-                    borderColors: glass.borderColors,
-                    shadow: [
-                      BoxShadow(
-                        color: glass.shadowColor,
-                        blurRadius: 12,
-                        offset: const Offset(0, 7),
-                      ),
-                    ],
-                    blur: 0,
-                    margin: EdgeInsets.only(top: height * 0.045),
-                    width: width * 0.9,
-                    borderRadius: 25,
-                    padding: EdgeInsets.symmetric(
-                      horizontal: width * 0.05,
-                      vertical: height * 0.025,
-                    ),
-                    gradient: LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      colors: glass.exerciseBackground,
-                    ),
-                    child: Column(
-                      children: [
-                        Text(
-                          'Forgotten Password',
-                          style: context.text.appBar.copyWith(
-                            color: glass.textMuted,
-                          ),
-                        ),
-                        Gap(height * 0.03),
-                        Row(
-                          children: [
-                            Text(
-                              'Enter The Code',
-                              style: context.text.headline2.copyWith(
-                                color: glass.hintText,
-                              ),
-                            ),
-                          ],
-                        ),
-                        Gap(height * 0.01),
-                        SizedBox(
-                          width: width * 0.9,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: List.generate(
-                              _codeLength,
-                              (index) => SizedBox(
-                                width: width * 0.14,
-                                height: height * 0.06,
-                                child: TextField(
-                                  controller: _controllers[index],
-                                  focusNode: _focusNodes[index],
-                                  onChanged: (v) => _onDigitChanged(index, v),
-                                  textAlign: TextAlign.center,
-                                  keyboardType: TextInputType.number,
-                                  maxLength: 1,
-                                  style: context.text.appBar.copyWith(
-                                    color: glass.textPrimary,
-                                  ),
-                                  decoration: InputDecoration(
-                                    counterText: '',
-                                    border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(12),
-                                      borderSide: BorderSide(
-                                        color: glass.mutedBorder,
-                                        width: 2,
-                                      ),
-                                    ),
-                                    enabledBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(12),
-                                      borderSide: BorderSide(
-                                        color: glass.mutedBorder,
-                                        width: 2,
-                                      ),
-                                    ),
-                                    focusedBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(12),
-                                      borderSide: const BorderSide(
-                                        color: AppColor.primary,
-                                        width: 2,
-                                      ),
-                                    ),
-                                    filled: true,
-                                    fillColor: glass.mutedBorder,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                        Gap(height * 0.03),
-                        CustomBtn(
-                          text: 'Confirm',
-                          btnColors: [
-                            AppColor.primary,
-                            AppColor.primary.withValues(alpha: 0.8),
-                          ],
-                          animateIn: true,
-                          onTap: _handleConfirm,
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
+            AuthPrimaryButton(
+              text: 'Confirm Code',
+              onTap: _handleConfirm,
             ),
-          ),
+          ],
         ),
-      ),
+      ],
     );
   }
 }

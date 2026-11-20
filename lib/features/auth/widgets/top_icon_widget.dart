@@ -54,6 +54,7 @@ class TopIconWidget extends StatelessWidget {
           "Track your workouts",
           style: context.text.headline1.copyWith(color: glass.hintText),
         ),
+        Gap(height * 0.03),
       ],
     );
   }

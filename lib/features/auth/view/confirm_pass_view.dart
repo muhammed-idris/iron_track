@@ -1,11 +1,12 @@
 import 'package:material_ui/material_ui.dart';
-import 'package:gap/gap.dart';
-import 'package:iron_track/core/theme/theme_context.dart';
-import 'package:iron_track/shared/containers/crystal_container.dart';
-import '../../../core/constants/colors_manager.dart';
-import '../../../shared/customs/custom_btn.dart';
-import '../../../shared/customs/custom_snack_bar.dart';
+import 'package:iron_track/shared/customs/custom_snack_bar.dart';
+import '../logic/auth_routes.dart';
+import '../logic/auth_validators.dart';
+import '../widgets/auth_card.dart';
+import '../widgets/auth_primary_button.dart';
+import '../widgets/auth_scaffold.dart';
 import '../widgets/auth_text_from_field.dart';
+import '../widgets/password_strength_meter.dart';
 import '../widgets/top_icon_widget.dart';
 import 'login_view.dart';
 
@@ -38,123 +39,57 @@ class _ConfirmPassViewState extends State<ConfirmPassView> {
     );
 
     Navigator.of(context).pushAndRemoveUntil(
-      MaterialPageRoute(builder: (_) => const LoginView()),
+      authFadeRoute(const LoginView()),
       (route) => false,
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    final glass = context.glass;
-    final size = MediaQuery.sizeOf(context);
-    final width = size.width;
-    final height = size.height;
-
-    return SafeArea(
-      child: GestureDetector(
-        onTap: () => FocusScope.of(context).unfocus(),
-        child: Scaffold(
-          appBar: AppBar(
-            toolbarHeight: height * 0.04,
-            backgroundColor: Colors.transparent,
-            elevation: 0,
-            leading: IconButton(
-              onPressed: () => Navigator.pop(context),
-              icon: Icon(
-                Icons.arrow_back_ios_new_rounded,
-                color: glass.hintText,
+    return AuthScaffold(
+      showBack: true,
+      children: [
+        const TopIconWidget(),
+        Form(
+          key: _formKey,
+          child: AuthCard(
+            title: 'Set New Password',
+            subtitle: 'Choose a strong new password for your account.',
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  AuthTextField(
+                    controller: _passwordController,
+                    label: 'New Password',
+                    icon: Icons.lock_rounded,
+                    hintText: '••••••••',
+                    obscureText: true,
+                    autofillHints: const [AutofillHints.newPassword],
+                    validator: AuthValidators.password,
+                  ),
+                  PasswordStrengthMeter(controller: _passwordController),
+                ],
               ),
-            ),
-          ),
-          body: Padding(
-            padding: EdgeInsets.symmetric(horizontal: width * 0.05),
-            child: SingleChildScrollView(
-              physics: const BouncingScrollPhysics(),
-              child: Form(
-                key: _formKey,
-                child: Column(
-                  children: [
-                    const TopIconWidget(),
-                    CustomGlassCard(
-                      borderColors: glass.borderColors,
-                      shadow: [
-                        BoxShadow(
-                          color: glass.shadowColor,
-                          blurRadius: 12,
-                          offset: const Offset(0, 7),
-                        ),
-                      ],
-                      blur: 0,
-                      margin: EdgeInsets.only(top: height * 0.045),
-                      width: width * 0.9,
-                      borderRadius: 25,
-                      padding: EdgeInsets.symmetric(
-                        horizontal: width * 0.05,
-                        vertical: height * 0.025,
-                      ),
-                      gradient: LinearGradient(
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
-                        colors: glass.exerciseBackground,
-                      ),
-                      child: Column(
-                        children: [
-                          Text(
-                            'Reset Password',
-                            style: context.text.appBar.copyWith(
-                              color: glass.textMuted,
-                            ),
-                          ),
-                          Gap(height * 0.015),
-                          AuthTextField(
-                            controller: _passwordController,
-                            label: 'New Password',
-                            icon: Icons.lock_rounded,
-                            hintText: '••••••••',
-                            obscureText: true,
-                            autofillHints: const [AutofillHints.newPassword],
-                            validator: (v) => (v == null || v.length < 8)
-                                ? 'Min 8 characters'
-                                : null,
-                          ),
-                          Gap(height * 0.02),
-                          AuthTextField(
-                            controller: _confirmController,
-                            label: 'Confirm Password',
-                            icon: Icons.lock_rounded,
-                            hintText: '••••••••',
-                            obscureText: true,
-                            autofillHints: const [AutofillHints.newPassword],
-                            validator: (v) {
-                              if (v == null || v.length < 8) {
-                                return 'Min 8 characters';
-                              }
-                              if (v != _passwordController.text) {
-                                return 'Passwords do not match';
-                              }
-                              return null;
-                            },
-                          ),
-                          Gap(height * 0.03),
-                          CustomBtn(
-                            text: 'Save Password',
-                            btnColors: [
-                              AppColor.primary,
-                              AppColor.primary.withValues(alpha: 0.8),
-                            ],
-                            animateIn: true,
-                            onTap: _handleResetPassword,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
+              AuthTextField(
+                controller: _confirmController,
+                label: 'Confirm Password',
+                icon: Icons.lock_rounded,
+                hintText: '••••••••',
+                obscureText: true,
+                autofillHints: const [AutofillHints.newPassword],
+                validator: AuthValidators.confirmPassword(
+                  () => _passwordController.text,
                 ),
               ),
-            ),
+              AuthPrimaryButton(
+                text: 'Save Password',
+                onTap: _handleResetPassword,
+              ),
+            ],
           ),
         ),
-      ),
+      ],
     );
   }
 }

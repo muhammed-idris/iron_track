@@ -89,7 +89,7 @@ class _AuthTextFieldState extends State<AuthTextField> {
             ),
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12),
-              borderSide: BorderSide(color: glass.mutedBorder, width: 2),
+              borderSide: BorderSide(color: glass.txtFieldColor, width: 2),
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12),
@@ -107,7 +107,7 @@ class _AuthTextFieldState extends State<AuthTextField> {
               borderSide: const BorderSide(color: AppColor.danger, width: 2),
             ),
             errorStyle: context.text.bodySmall.copyWith(color: AppColor.danger),
-            fillColor: glass.mutedBorder,
+            fillColor: glass.txtFieldColor,
             filled: true,
             contentPadding: const EdgeInsets.symmetric(
               vertical: 13,
