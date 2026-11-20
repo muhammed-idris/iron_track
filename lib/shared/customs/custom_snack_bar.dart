@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'dart:ui';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import '../../core/constants/colors_manager.dart';
 import '../../core/theme/theme_context.dart';
 import '../containers/crystal_container.dart';

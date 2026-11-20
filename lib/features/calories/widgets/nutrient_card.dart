@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:gap/gap.dart';
 import 'package:iron_track/core/theme/theme_context.dart';
@@ -61,13 +61,13 @@ class NutrientCard extends StatelessWidget {
               text: '${value}g /',
               weight: FontWeight.w500,
               size: width * 0.035,
-              color: glass.textPrimary,
+              color: glass.hintText ,
             ),
             CustomText(
               text: ' ${total}g',
               weight: FontWeight.w500,
               size: width * 0.035,
-              color: glass.hintText,
+              color: glass.textPrimary,
             ),
           ],
         ),

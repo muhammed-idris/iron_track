@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import '../widget/chart_widget.dart';
 
 class AllTimePage extends StatelessWidget {

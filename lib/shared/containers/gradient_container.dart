@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// Reusable Gradient Container for styled cards and background surfaces.
 class GradientContainer extends StatelessWidget {

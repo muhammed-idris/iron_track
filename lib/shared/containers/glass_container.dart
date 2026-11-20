@@ -1,5 +1,5 @@
 import 'dart:ui';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// Reusable Glassmorphism Container widget with BackdropFilter blur.
 class GlassContainer extends StatelessWidget {

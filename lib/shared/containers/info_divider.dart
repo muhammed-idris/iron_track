@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:iron_track/core/theme/theme_context.dart';
 
 /// Reusable Divider line container with rounded corners and context glass theme styling.

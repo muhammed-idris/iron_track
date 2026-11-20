@@ -1,5 +1,5 @@
 import 'dart:ui';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:gradient_borders/box_borders/gradient_box_border.dart';
 
 /// Customizable Glassmorphism Card supporting gradient borders, backdrop blur, and custom shadows.
