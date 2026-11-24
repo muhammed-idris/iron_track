@@ -42,8 +42,7 @@ class LevelsWidget extends StatelessWidget {
 
     return InkWell(
       borderRadius: BorderRadius.circular(19),
-      onTap: () => Navigator.push(
-        context,
+      onTap: () => Navigator.of(context, rootNavigator: true).push(
         MaterialPageRoute(builder: (context) => LevelsView(volumeXp: volumeXp)),
       ),
       child: CustomGlassCard(

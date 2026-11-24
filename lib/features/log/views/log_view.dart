@@ -1,11 +1,9 @@
 import 'package:material_ui/material_ui.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:gap/gap.dart';
 import 'package:iron_track/features/home/data/exercise_model.dart';
 import 'package:iron_track/features/home/logic/iron_track_helper.dart';
 import 'package:iron_track/features/log/widgets/section_widgets/week_selector_widget.dart';
-import '../../../core/constants/colors_manager.dart';
 import '../../../shared/customs/custom_animate.dart';
 import '../../../shared/customs/custom_snack_bar.dart';
 import '../../home/data/workout_model.dart';
@@ -176,9 +174,6 @@ class LogViewState extends State<LogView> {
   Widget _buildExercisesSliver() {
     final height = MediaQuery.sizeOf(context).height;
 
-    if (isLoading) {
-      return const SliverToBoxAdapter(child: ExerciseListLoading());
-    }
     if (exercises.isEmpty) {
       return const SliverToBoxAdapter(child: ExerciseListEmpty());
     }

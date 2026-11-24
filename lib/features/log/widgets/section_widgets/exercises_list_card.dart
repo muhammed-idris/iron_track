@@ -61,7 +61,7 @@ class ExerciseListHeader extends StatelessWidget {
         ),
         const Spacer(),
         _AddButton(
-          onTap: () => Navigator.of(context).push(
+          onTap: () => Navigator.of(context, rootNavigator: true).push(
             MaterialPageRoute(
               builder: (_) => AddExerciseScreen(
                 selectedDay: selectedDayName,
@@ -129,27 +129,6 @@ class _AddButtonState extends State<_AddButton> {
   }
 }
 
-class ExerciseListLoading extends StatelessWidget {
-  const ExerciseListLoading({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.symmetric(vertical: 20),
-      child: Center(
-        child: SizedBox(
-          width: 28,
-          height: 28,
-          child: CupertinoActivityIndicator(
-            color: AppColor.primary,
-            radius: 15,
-          ),
-        ),
-      ),
-    );
-  }
-}
-
 class ExerciseListEmpty extends StatelessWidget {
   const ExerciseListEmpty({super.key});
 
@@ -160,7 +139,7 @@ class ExerciseListEmpty extends StatelessWidget {
     final glass = context.glass;
 
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 20),
+      padding: const EdgeInsets.symmetric(vertical: 20),
       child: Center(
         child: Column(
           children: [
@@ -204,8 +183,7 @@ class ExerciseListItem extends StatelessWidget {
   });
 
   Future<void> _openEditScreen(BuildContext context) async {
-    Navigator.push(
-      context,
+    Navigator.of(context, rootNavigator: true).push(
       MaterialPageRoute(
         builder: (context) => EditExerciseScreen(
           exercise: exercise,
@@ -227,27 +205,26 @@ class ExerciseListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RepaintBoundary(
-      child:
-          GestureDetector(
-                onTap: () => _openEditScreen(context),
-                child: ExerciseDataWidget(
-                  exercise: exercise,
-                  exeNumber: index + 1,
-                  onDelete: () async {
-                    await IronTrackHelper.delete(exercise.id!);
-                    onDelete(exercise);
-                  },
-                ),
-              )
-              .animate()
-              .slideY(
-                delay: (60 * index).ms,
-                duration: 450.ms,
-                curve: Curves.easeOutCubic,
-                begin: 0.05,
-                end: 0.0,
-              )
-              .fadeIn(delay: (60 * index).ms, duration: 350.ms),
+      child: GestureDetector(
+        onTap: () => _openEditScreen(context),
+        child: ExerciseDataWidget(
+          exercise: exercise,
+          exeNumber: index + 1,
+          onDelete: () async {
+            await IronTrackHelper.delete(exercise.id!);
+            onDelete(exercise);
+          },
+        ),
+      )
+          .animate()
+          .slideY(
+            delay: (60 * index).ms,
+            duration: 450.ms,
+            curve: Curves.easeOutCubic,
+            begin: 0.05,
+            end: 0.0,
+          )
+          .fadeIn(delay: (60 * index).ms, duration: 350.ms),
     );
   }
 }

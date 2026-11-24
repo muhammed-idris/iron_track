@@ -207,6 +207,7 @@ class _AddExerciseWidgetState extends State<AddExerciseWidget> {
           children: [
             Expanded(
               child: CustomGlassCard(
+                height: height* 0.145,
                 shadow: [
                   BoxShadow(
                     color: glass.shadowColor,
@@ -250,6 +251,7 @@ class _AddExerciseWidgetState extends State<AddExerciseWidget> {
             const Gap(12),
             Expanded(
               child: CustomGlassCard(
+                height: height* 0.145,
                 shadow: [
                   BoxShadow(
                     color: glass.shadowColor,
@@ -273,7 +275,18 @@ class _AddExerciseWidgetState extends State<AddExerciseWidget> {
                   children: [
                     Row(
                       children: [
-                        _label("Reps", Icons.repeat_rounded),
+                        Image.asset(
+                          "assets/icons/repeat-round-512.png",
+                          color: context.glass.textMuted,
+                          scale: 25,
+                        ),
+                        const Gap(5),
+                        Text(
+                          "Reps",
+                          style: context.text.headline2.copyWith(
+                            color: context.glass.textPrimary,
+                          ),
+                        )
                       ],
                     ),
                     const Gap(12),
@@ -316,7 +329,18 @@ class _AddExerciseWidgetState extends State<AddExerciseWidget> {
           child: Column(
             children: [
               Row(children: [
-                _label("Weight (${_unit.name})", Icons.monitor_weight_outlined),
+                Image.asset(
+                  "assets/icons/weight-512.png",
+                  color: context.glass.textMuted,
+                  scale: 25,
+                ),
+                const Gap(5),
+                Text(
+                  "Weight ${_unit.name}",
+                  style: context.text.headline2.copyWith(
+                    color: context.glass.textPrimary,
+                  ),
+                ),
                 const Spacer()
               ]),
               const Gap(10),
@@ -350,7 +374,7 @@ class _AddExerciseWidgetState extends State<AddExerciseWidget> {
   Widget _label(String text, IconData icon) =>
       Row(
         children: [
-          Icon(icon, color: context.glass.textMuted),
+          Icon(icon, color: context.glass.textMuted,size: 22,),
           const Gap(5),
           Text(
             text,

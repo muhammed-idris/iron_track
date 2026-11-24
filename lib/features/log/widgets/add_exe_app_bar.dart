@@ -1,3 +1,4 @@
+import 'package:iron_track/core/constants/colors_manager.dart';
 import 'package:material_ui/material_ui.dart';
 import 'package:gap/gap.dart';
 import 'package:iron_track/core/theme/theme_context.dart';
@@ -47,7 +48,7 @@ class AddExeAppBar extends StatelessWidget implements PreferredSizeWidget {
                 width: _backButtonSize,
                 height: _backButtonSize,
                 borderRadius: 15,
-                gradient: LinearGradient(colors: glass.surfaceGradient),
+                backgroundColor: GlassColors.glassDark1,
                 borderColors: glass.borderColors,
                 child: Center(
                   child: Icon(

@@ -50,7 +50,7 @@ class AppTheme {
       brightness: brightness,
       splashColor: Colors.transparent,
       highlightColor: Colors.transparent,
-      scaffoldBackgroundColor: Colors.transparent,
+      scaffoldBackgroundColor: glass.backGround,
       colorScheme: colorScheme,
       splashFactory: InkRipple.splashFactory,
       appBarTheme: AppBarTheme(

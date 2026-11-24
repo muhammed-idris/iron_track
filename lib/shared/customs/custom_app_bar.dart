@@ -1,3 +1,4 @@
+import 'package:iron_track/core/constants/colors_manager.dart';
 import 'package:material_ui/material_ui.dart';
 import 'package:gap/gap.dart';
 import 'package:iron_track/core/theme/theme_context.dart';
@@ -47,7 +48,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                 padding: EdgeInsets.zero,
                 height: _buttonSize,
                 borderRadius: 12,
-                backgroundColor: glass.buttonColor,
+                backgroundColor: GlassColors.glassDark1,
                 child: Center(
                   child: Icon(
                     Icons.arrow_back_ios_new_rounded,
